@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/TableRow1"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/typeView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:contentDescription="Type"
+        android:padding="5dp"
+        android:scaleType="fitStart"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/nameView"
+        android:layout_width="wrap_content"
+        android:layout_height="57dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="40dp"
+        android:paddingRight="20dp"
+        android:text="Trend Text"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#3f3f3f" />
+
+    <TextView
+        android:id="@+id/dateView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+</TableRow>

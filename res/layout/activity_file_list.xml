@@ -11,7 +11,7 @@
     tools:context="com.example.lockdoc.FileListActivity" >
 
     <ListView
-        android:id="@+id/listView1"
+        android:id="@+id/file_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
     </ListView>

@@ -1,16 +1,32 @@
 package com.example.lockdoc;
 
-import android.support.v7.app.ActionBarActivity;
+import java.util.ArrayList;
+
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 
-public class FileListActivity extends ActionBarActivity {
+public class FileListActivity extends Activity implements OnItemClickListener {
 
+	
+	ArrayAdapter<Document> fileAdapter;
+	//holds our file data
+	ArrayList<Document> fileArray = new ArrayList<Document>();
+
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
+		setTitle("Your Files");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_file_list);
+		
+		
 	}
 
 	@Override
@@ -31,4 +47,17 @@ public class FileListActivity extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
+		// Open selected file for viewing
+		
+	}
+	
+	public void createList(){
+		//creates the list that holds the files.
+	}
+	
+
 }

@@ -8,6 +8,7 @@
         android:id="@+id/typeView"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginBottom="20dp"
         android:contentDescription="Type"
         android:padding="5dp"
         android:scaleType="fitStart"
@@ -17,9 +18,10 @@
         android:id="@+id/nameView"
         android:layout_width="wrap_content"
         android:layout_height="57dp"
+        android:layout_marginBottom="20dp"
         android:gravity="center_vertical"
         android:paddingLeft="30dp"
-        android:paddingRight="30dp"
+        android:paddingRight="15dp"
         android:paddingTop="10dp"
         android:text="File Name"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -29,6 +31,7 @@
         android:id="@+id/dateView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="5dp"
         android:text="Upload Date"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 

@@ -18,9 +18,10 @@
         android:layout_width="wrap_content"
         android:layout_height="57dp"
         android:gravity="center_vertical"
-        android:paddingLeft="40dp"
-        android:paddingRight="20dp"
-        android:text="Trend Text"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingTop="10dp"
+        android:text="File Name"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#3f3f3f" />
 
@@ -28,7 +29,7 @@
         android:id="@+id/dateView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Small Text"
+        android:text="Upload Date"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </TableRow>

@@ -1,12 +1,14 @@
 package com.example.lockdoc;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
-public class LoginActivity extends ActionBarActivity {
+public class LoginActivity extends Activity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,4 +35,14 @@ public class LoginActivity extends ActionBarActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+	public void logIn(View v) {
+		// Activated on Login Click. Will check for correct pin, then respond
+		
+		//intent to open file list
+		Intent login = new Intent(this, FileListActivity.class);
+		startActivity(login);
+		
+	}
 }

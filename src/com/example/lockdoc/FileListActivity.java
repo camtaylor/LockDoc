@@ -25,6 +25,14 @@ public class FileListActivity extends Activity implements OnItemClickListener {
 		setTitle("Your Files");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_file_list);
+		
+		//loop to populate example list
+		for(int i = 0; i < 10; i++){
+			Document example = new Document("Example File", "ID");
+			fileArray.add(example);
+		}
+		
+		createList();
 
 	}
 
@@ -32,6 +40,8 @@ public class FileListActivity extends Activity implements OnItemClickListener {
 		// creates the list that holds the files.
 		fileAdapter = new FileAdapter(this, fileArray);
 		fileView = (ListView) findViewById(R.id.file_view);
+		fileView.setAdapter(fileAdapter);
+		fileView.setOnItemClickListener(this);
 	}
 
 	@Override

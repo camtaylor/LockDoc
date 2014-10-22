@@ -30,6 +30,10 @@
             android:name=".FileAdapter"
             android:label="@string/title_activity_file_adapter" >
         </activity>
+        <activity
+            android:name=".ActionOptionsActivity"
+            android:label="@string/title_activity_action_options" >
+        </activity>
     </application>
 
 </manifest>

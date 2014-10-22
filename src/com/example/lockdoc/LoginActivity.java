@@ -41,7 +41,7 @@ public class LoginActivity extends Activity{
 		// Activated on Login Click. Will check for correct pin, then respond
 		
 		//intent to open file list
-		Intent login = new Intent(this, FileListActivity.class);
+		Intent login = new Intent(this, ActionOptionsActivity.class);
 		startActivity(login);
 		
 	}

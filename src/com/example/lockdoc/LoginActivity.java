@@ -40,7 +40,8 @@ public class LoginActivity extends Activity {
 		// Activated on Login Click. Will check for correct pin, then respond
 		EditText pin = (EditText) findViewById(R.id.pin);
 		String attempted = pin.getText().toString();
-
+		
+		//Verifies pin number
 		if (attempted.equals("1234")) {
 			// intent to open file list
 			Intent login = new Intent(this, ActionOptionsActivity.class);

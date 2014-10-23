@@ -7,5 +7,8 @@
     <string name="title_activity_file_list">FileListActivity</string>
     <string name="title_activity_file_adapter">FileAdapter</string>
     <string name="title_activity_action_options">ActionOptionsActivity</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="title_activity_capture">CaptureActivity</string>
+    <string name="image_cd_camera">This is a generic content description</string>
 
 </resources>

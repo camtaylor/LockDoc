@@ -48,7 +48,7 @@ public class LoginActivity extends Activity {
 			startActivity(login);
 		} else {
 			Toast.makeText(getApplicationContext(), "Incorrect Pin",
-					Toast.LENGTH_LONG).show();
+					Toast.LENGTH_SHORT).show();
 		}
 
 	}

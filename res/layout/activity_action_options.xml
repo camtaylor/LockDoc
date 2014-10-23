@@ -34,7 +34,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="74dp"
         android:src="@drawable/file_add"
-        android:onClick="actionSelected" />
+        android:onClick="capture" />
 
     <ImageButton
         android:id="@+id/viewFilesButton"
@@ -44,6 +44,6 @@
         android:layout_below="@+id/textView1"
         android:layout_marginTop="66dp"
         android:src="@drawable/small_folder_icon"
-        android:onClick="actionSelected" />
+        android:onClick="fileList" />
 
 </RelativeLayout>

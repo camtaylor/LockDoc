@@ -1,6 +1,6 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/RelativeLayout1"
+    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -14,29 +14,27 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/pin"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="70dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="32dp"
+        android:layout_marginTop="130dp"
         android:text="Enter Pin:"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <EditText
         android:id="@+id/pin"
-        android:layout_width="166dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="40dp"
         android:ems="10"
         android:inputType="numberPassword" />
 
     <Button
-        android:id="@+id/button1"
-        android:layout_width="fill_parent"
+        android:id="@+id/button_camera"
+        android:layout_width="239dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="71dp"
-        android:text="Login"
-        android:onClick="logIn" />
+        android:layout_gravity="center_horizontal"
+        android:onClick="logIn"
+        android:text="Login" />
 
-</RelativeLayout>
+</LinearLayout>

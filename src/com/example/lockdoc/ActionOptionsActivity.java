@@ -13,14 +13,13 @@ public class ActionOptionsActivity extends Activity {
 		setContentView(R.layout.activity_action_options);
 	}
 
-	
-	public void fileList(View v){
-		
+	public void fileList(View v) {
+
 		Intent fileList = new Intent(this, FileListActivity.class);
 		startActivity(fileList);
 	}
-	
-	public void capture(View v){
+
+	public void capture(View v) {
 		Intent captureDoc = new Intent(this, CaptureActivity.class);
 		startActivity(captureDoc);
 	}

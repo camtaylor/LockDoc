@@ -3,6 +3,7 @@ package com.example.lockdoc;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,11 +11,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class LoginActivity extends Activity {
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+		logIn(findViewById(R.id.create_account_button));
 	}
 
 	@Override
@@ -40,16 +41,33 @@ public class LoginActivity extends Activity {
 		// Activated on Login Click. Will check for correct pin, then respond
 		EditText pin = (EditText) findViewById(R.id.pin);
 		String attempted = pin.getText().toString();
-		
-		//Verifies pin number
-		if (attempted.equals("1234")) {
-			// intent to open file list
-			Intent login = new Intent(this, ActionOptionsActivity.class);
-			startActivity(login);
-		} else {
-			Toast.makeText(getApplicationContext(), "Incorrect Pin",
-					Toast.LENGTH_SHORT).show();
+		// get preferences
+		String savedPin = PreferenceManager.getDefaultSharedPreferences(
+				getApplicationContext()).getString("pin", null);
+
+		if (savedPin != null) {
+			// Verifies pin number
+			if (attempted.equals(savedPin)) {
+				// intent to open file list
+				Intent login = new Intent(this, ActionOptionsActivity.class);
+				startActivity(login);
+			} else {
+				Toast.makeText(getApplicationContext(), "Incorrect Pin",
+						Toast.LENGTH_SHORT).show();
+			}
+		}
+		// else create account
+		else {
+			Intent createAccount = new Intent(this, CreateAccountActivity.class);
+			startActivity(createAccount);
 		}
 
+	}
+
+	// TODO remove this method. For test purposes only!!
+	public void deletePin(View v) {
+		// changes pin to null
+		PreferenceManager.getDefaultSharedPreferences(getApplicationContext())
+				.edit().putString("pin", null).commit();
 	}
 }

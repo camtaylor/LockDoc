@@ -1,11 +1,10 @@
 package com.example.lockdoc;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -21,17 +20,17 @@ public class FileListActivity extends Activity implements OnItemClickListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-
+		
 		setTitle("Your Files");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_file_list);
 		
-		//loop to populate example list
-		for(int i = 0; i < 10; i++){
+		// loop to populate example list
+		for (int i = 0; i < 10; i++) {
 			Document example = new Document("Example File", "ID");
 			fileArray.add(example);
 		}
-		
+
 		createList();
 
 	}
@@ -47,7 +46,7 @@ public class FileListActivity extends Activity implements OnItemClickListener {
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		// Open selected file for viewing
+		// TODO Open selected file for viewing
 
 	}
 

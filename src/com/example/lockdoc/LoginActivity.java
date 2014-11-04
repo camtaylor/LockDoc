@@ -69,5 +69,8 @@ public class LoginActivity extends Activity {
 		// changes pin to null
 		PreferenceManager.getDefaultSharedPreferences(getApplicationContext())
 				.edit().putString("pin", null).commit();
+		
+		EditText pinEnter = (EditText)findViewById(R.id.pin);
+		pinEnter.setText("");
 	}
 }

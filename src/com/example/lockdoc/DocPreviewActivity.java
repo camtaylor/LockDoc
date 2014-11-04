@@ -1,6 +1,7 @@
 package com.example.lockdoc;
 
 import java.io.File;
+
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -9,35 +10,28 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-public class CaptureActivity extends Activity {
+public class DocPreviewActivity extends ActionBarActivity {
 
 	private static int TAKE_PICTURE = 1;
 	private Uri imageUri;
-	private static String logtag = "CaptureActivity";
+	private static String logtag = "DocPreviewActivity";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_capture);
+		setContentView(R.layout.activity_doc_preview);
+		takePhoto();
 
-		Button cameraButton = (Button) findViewById(R.id.button_camera);
-		cameraButton.setOnClickListener(cameraListener);
 	}
 
-	private OnClickListener cameraListener = new OnClickListener() {
-		public void onClick(View v) {
-			takePhoto(v);
-		}
-	};
-
-	private void takePhoto(View v) {
+	private void takePhoto() {
 		Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
 		File photo = new File(
 				Environment
@@ -54,6 +48,7 @@ public class CaptureActivity extends Activity {
 		super.onActivityResult(requestCode, resultCode, intent);
 
 		if (resultCode == Activity.RESULT_OK) {
+
 			Uri selectedImage = imageUri;
 			getContentResolver().notifyChange(selectedImage, null);
 			ImageView imageView = (ImageView) findViewById(R.id.image_camera);
@@ -63,12 +58,26 @@ public class CaptureActivity extends Activity {
 			try {
 				bitmap = MediaStore.Images.Media.getBitmap(cr, selectedImage);
 				imageView.setImageBitmap(bitmap);
-				Toast.makeText(CaptureActivity.this, selectedImage.toString(),
-						Toast.LENGTH_LONG).show();
 			} catch (Exception e) {
 				Log.e(logtag, e.toString());
 			}
 		}
 	}
+
+	public void upload(View v) {
+		// go back to upload option
+		super.onBackPressed();
+	}
+
+	public void save(View v) {
+		EditText docName = (EditText) findViewById(R.id.doc_name);
+		String name = docName.getText().toString();
+		Document document = new Document();
+		document.setFilename(name);
+		Toast.makeText(getApplicationContext(), name, Toast.LENGTH_LONG).show();
+		//TODO save in db and start new activity for classification
+	}
+
+
 
 }

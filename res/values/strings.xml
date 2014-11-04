@@ -11,5 +11,8 @@
     <string name="title_activity_capture">CaptureActivity</string>
     <string name="image_cd_camera">This is a generic content description</string>
     <string name="title_activity_create_account">CreateAccountActivity</string>
+    <string name="title_activity_doc_info">DocInfoActivity</string>
+    <string name="title_activity_doc_preview">DocPreviewActivity</string>
+    <string name="title_activity_test_database">TestDatabaseActivity</string>
 
 </resources>

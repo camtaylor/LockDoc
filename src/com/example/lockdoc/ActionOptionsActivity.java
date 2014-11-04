@@ -20,7 +20,7 @@ public class ActionOptionsActivity extends Activity {
 	}
 
 	public void capture(View v) {
-		Intent captureDoc = new Intent(this, CaptureActivity.class);
+		Intent captureDoc = new Intent(this, UploadActivity.class);
 		startActivity(captureDoc);
 	}
 }

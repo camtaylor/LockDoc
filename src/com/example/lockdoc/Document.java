@@ -7,14 +7,23 @@ import java.util.Date;
 
 public class Document {
 
+	/*
+	 * Document Object for LocDoc
+	 * Data Model for Database
+	 */
+	private long id;
 	private String filename;
 	private String docType;
-	private Date uploadDate;
+	private String uploadDate;
 
 	public Document(String filename, String type) {
-		this.uploadDate = new Date();
+		Date docDate = new Date();
+		this.uploadDate = formatUploadDate(docDate);
 		this.filename = filename;
 		this.docType = type;
+	}
+
+	public Document() {
 	}
 
 	public String getFilename() {
@@ -26,7 +35,7 @@ public class Document {
 	}
 
 	public String getDocType() {
-		return docType;
+		return this.docType;
 	}
 
 	public void setDocType(String docType) {
@@ -34,10 +43,22 @@ public class Document {
 	}
 
 	@SuppressLint("SimpleDateFormat")
-	public String getUploadDate() {
+	public String formatUploadDate(Date docDate) {
 		//returns a formatted string rather than a Date object
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		return dateFormat.format(this.uploadDate);
+		return dateFormat.format(docDate);
+	}
+	
+	public String getUploadDate(){
+		return this.uploadDate;
+	}
+
+	public long getID() {
+		return this.id;
+	}
+
+	public void setID(long id) {
+		this.id = id;
 	}
 
 }

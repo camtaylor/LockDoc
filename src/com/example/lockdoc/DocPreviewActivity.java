@@ -68,9 +68,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 
 	public void upload(View v) {
 		// go back to upload option
-		// super.onBackPressed();
-		Intent view = new Intent(this, SQLView.class);
-		startActivity(view);
+		super.onBackPressed();
 	}
 
 	public void save(View v) {
@@ -78,7 +76,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 		String name = docName.getText().toString();
 		EditText docType = (EditText) findViewById(R.id.doc_type);
 		String type = docType.getText().toString();
-		//TODO delete
+		// TODO delete
 		Document doc = new Document(name, type);
 		String date = doc.getUploadDate();
 
@@ -102,6 +100,9 @@ public class DocPreviewActivity extends ActionBarActivity {
 				d.show();
 			}
 		}
+
+		Intent view = new Intent(this, SQLView.class);
+		startActivity(view);
 	}
 
 }

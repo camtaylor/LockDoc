@@ -9,6 +9,7 @@
         android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -37,12 +38,24 @@
             android:label="@string/title_activity_action_options" >
         </activity>
         <activity
-            android:name=".CaptureActivity"
+            android:name=".UploadActivity"
             android:label="@string/title_activity_capture" >
         </activity>
         <activity
             android:name=".CreateAccountActivity"
             android:label="@string/title_activity_create_account" >
+        </activity>
+        <activity
+            android:name=".DocInfoActivity"
+            android:label="@string/title_activity_doc_info" >
+        </activity>
+        <activity
+            android:name=".DocPreviewActivity"
+            android:label="@string/title_activity_doc_preview" >
+        </activity>
+        <activity
+            android:name=".TestDatabaseActivity"
+            android:label="@string/title_activity_test_database" >
         </activity>
     </application>
 

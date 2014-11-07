@@ -22,8 +22,10 @@ public class Document {
 		this.docType = type;
 	}
 
-	public Document() {
-
+	public Document(String filename, String type, String uploadDate) {
+		this.uploadDate = uploadDate;
+		this.filename = filename;
+		this.docType = type;
 	}
 
 	public String getFilename() {

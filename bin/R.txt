@@ -240,7 +240,6 @@ int drawable lock 0x7f020059
 int drawable small_folder_icon 0x7f02005a
 int id LinearLayout1 0x7f06004b
 int id TableLayout1 0x7f060046
-int id TableRow1 0x7f06004f
 int id action_bar 0x7f06001c
 int id action_bar_activity_content 0x7f060015
 int id action_bar_container 0x7f06001b
@@ -252,7 +251,7 @@ int id action_context_bar 0x7f06001d
 int id action_menu_divider 0x7f060016
 int id action_menu_presenter 0x7f060017
 int id action_mode_close_button 0x7f060024
-int id action_settings 0x7f060053
+int id action_settings 0x7f060052
 int id activity_chooser_view_content 0x7f060025
 int id addFileButton 0x7f06003d
 int id always 0x7f06000b
@@ -262,7 +261,7 @@ int id cancel_button 0x7f06004a
 int id checkbox 0x7f06002d
 int id collapseActionView 0x7f06000d
 int id create_account_button 0x7f060045
-int id dateView 0x7f060052
+int id dateView 0x7f060051
 int id default_activity_button 0x7f060028
 int id dialog 0x7f06000e
 int id disableHome 0x7f060008
@@ -283,7 +282,7 @@ int id image_camera 0x7f060041
 int id listMode 0x7f060001
 int id list_item 0x7f060029
 int id middle 0x7f060012
-int id nameView 0x7f060051
+int id nameView 0x7f060050
 int id never 0x7f060009
 int id none 0x7f060010
 int id normal 0x7f060000
@@ -317,7 +316,7 @@ int id textView3 0x7f060044
 int id title 0x7f06002b
 int id top_action_bar 0x7f060020
 int id tvSQLinfo 0x7f06004e
-int id typeView 0x7f060050
+int id typeView 0x7f06004f
 int id up 0x7f060021
 int id useLogo 0x7f060003
 int id viewFilesButton 0x7f06003f

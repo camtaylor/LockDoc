@@ -1,5 +1,7 @@
 package com.example.lockdoc;
 
+import java.util.ArrayList;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -91,6 +93,27 @@ public class DocSave {
 		}
 		
 		return result;
+	}
+	
+	public ArrayList<Document> getDocumentList() {
+		// TODO Auto-generated method stub
+		String[] columns = new String[]{COLUMN_ID, COLUMN_NAME, COLUMN_TYPE, COLUMN_DATE};
+		Cursor c = database.query(TABLE_DOCS, columns, null, null, null, null, null, null);
+		ArrayList<Document> documents = new ArrayList<Document>();
+		
+		int iRow = c.getColumnIndex(COLUMN_ID);
+		int iName = c.getColumnIndex(COLUMN_NAME);
+		int iType = c.getColumnIndex(COLUMN_TYPE);
+		int iDate = c.getColumnIndex(COLUMN_DATE);
+	
+		//cycle through database
+		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()){
+			Document doc = new Document(c.getString(iName), c.getString(iType),c.getString(iDate));
+			documents.add(doc);
+			
+		}
+		
+		return documents;
 	}
 
 }

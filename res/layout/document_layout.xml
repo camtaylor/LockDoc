@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/TableRow1"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
     android:layout_width="wrap_content"
-    android:layout_height="match_parent" >
+    android:layout_height="wrap_content"
+    android:layout_gravity="right" >
 
     <ImageView
         android:id="@+id/typeView"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_gravity="start"
         android:layout_marginBottom="20dp"
+        android:layout_marginRight="10dp"
         android:contentDescription="Type"
         android:padding="5dp"
         android:scaleType="fitStart"
@@ -17,22 +20,25 @@
     <TextView
         android:id="@+id/nameView"
         android:layout_width="wrap_content"
-        android:layout_height="57dp"
-        android:layout_marginBottom="20dp"
-        android:gravity="center_vertical"
-        android:paddingLeft="30dp"
-        android:paddingRight="15dp"
-        android:paddingTop="10dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical|center_horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="5dp"
         android:text="File Name"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#3f3f3f" />
 
     <TextView
         android:id="@+id/dateView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="5dp"
+        android:gravity="right|center_vertical"
         android:text="Upload Date"
+        android:textAlignment="gravity"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
-</TableRow>
+</LinearLayout>

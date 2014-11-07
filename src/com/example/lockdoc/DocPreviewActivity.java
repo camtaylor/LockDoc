@@ -79,8 +79,6 @@ public class DocPreviewActivity extends ActionBarActivity {
 		// TODO delete
 		Document doc = new Document(name, type);
 		String date = doc.getUploadDate();
-
-		Toast.makeText(getApplicationContext(), name, Toast.LENGTH_LONG).show();
 		// TODO save in db and start new activity for classification
 		boolean didItWork = true;
 		try {
@@ -101,7 +99,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 			}
 		}
 
-		Intent view = new Intent(this, SQLView.class);
+		Intent view = new Intent(this, FileListActivity.class);
 		startActivity(view);
 	}
 

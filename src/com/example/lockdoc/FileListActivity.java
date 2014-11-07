@@ -25,11 +25,11 @@ public class FileListActivity extends Activity implements OnItemClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_file_list);
 
-		// loop to populate example list
-		for (int i = 0; i < 10; i++) {
-			Document example = new Document("Example File", "ID");
-			fileArray.add(example);
-		}
+		//populate list from database
+		DocSave db = new DocSave(this);
+		db.open();
+		fileArray = db.getDocumentList();
+		db.close();
 
 		createList();
 

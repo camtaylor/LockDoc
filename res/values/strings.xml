@@ -14,5 +14,6 @@
     <string name="title_activity_doc_info">DocInfoActivity</string>
     <string name="title_activity_doc_preview">DocPreviewActivity</string>
     <string name="title_activity_test_database">TestDatabaseActivity</string>
+    <string name="title_activity_sqlview">SQLView</string>
 
 </resources>

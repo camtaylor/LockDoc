@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+
 public class DocSQLiteHelper extends SQLiteOpenHelper{
 	
 	
@@ -36,14 +37,11 @@ public class DocSQLiteHelper extends SQLiteOpenHelper{
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL(TABLE_CREATE);
-		Log.i(LOGTAG, "Table has been created");
-		
-		
+		Log.i(LOGTAG, "Table has been created");	
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// TODO Auto-generated method stub
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_DOCS);
 		onCreate(db);
 	}

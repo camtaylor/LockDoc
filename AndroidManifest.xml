@@ -57,6 +57,10 @@
             android:name=".TestDatabaseActivity"
             android:label="@string/title_activity_test_database" >
         </activity>
+        <activity
+            android:name=".SQLView"
+            android:label="@string/title_activity_sqlview" >
+        </activity>
     </application>
 
 </manifest>

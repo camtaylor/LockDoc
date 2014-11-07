@@ -20,11 +20,11 @@ public class FileListActivity extends Activity implements OnItemClickListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
+
 		setTitle("Your Files");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_file_list);
-		
+
 		// loop to populate example list
 		for (int i = 0; i < 10; i++) {
 			Document example = new Document("Example File", "ID");

@@ -23,10 +23,10 @@ public class DocSQLiteHelper extends SQLiteOpenHelper{
 	private static final String TABLE_CREATE = 
 			"create table" + TABLE_DOCS + " (" +
 			COLUMN_ID + " integer primary key autoincrement, " +
-			COLUMN_NAME + " text, " +
-			COLUMN_TYPE + " text, " +
-			COLUMN_DATE + " text, " +
-			")";
+			COLUMN_NAME + " text not null" +
+			COLUMN_TYPE + " text not null" +
+			COLUMN_DATE + " text not null" +
+			");";
 	
 
 	public DocSQLiteHelper(Context context) {

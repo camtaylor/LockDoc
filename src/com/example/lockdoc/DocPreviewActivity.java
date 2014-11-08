@@ -21,6 +21,10 @@ import android.widget.Toast;
 
 public class DocPreviewActivity extends ActionBarActivity {
 
+	/*
+	 * Previews the file to be uploaded and saves to database
+	 */
+
 	private static int TAKE_PICTURE = 1;
 	private Uri imageUri;
 	private static String logtag = "DocPreviewActivity";
@@ -34,6 +38,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 	}
 
 	private void takePhoto() {
+		// sends intent to built in Android camera
 		Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
 		File photo = new File(
 				Environment
@@ -50,7 +55,6 @@ public class DocPreviewActivity extends ActionBarActivity {
 		super.onActivityResult(requestCode, resultCode, intent);
 
 		if (resultCode == Activity.RESULT_OK) {
-
 			Uri selectedImage = imageUri;
 			getContentResolver().notifyChange(selectedImage, null);
 			ImageView imageView = (ImageView) findViewById(R.id.image_camera);
@@ -58,6 +62,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 			Bitmap bitmap;
 
 			try {
+				// sets image view to image
 				bitmap = MediaStore.Images.Media.getBitmap(cr, selectedImage);
 				imageView.setImageBitmap(bitmap);
 			} catch (Exception e) {
@@ -90,15 +95,11 @@ public class DocPreviewActivity extends ActionBarActivity {
 			didItWork = false;
 		} finally {
 			if (didItWork) {
-				Dialog d = new Dialog(this);
-				d.setTitle("Heck Yea!");
-				TextView tv = new TextView(this);
-				tv.setText("Success");
-				d.setContentView(tv);
-				d.show();
+				Toast.makeText(getApplicationContext(), "Image saved",
+						Toast.LENGTH_LONG).show();
 			}
-		}
-
+		}	
+		//starts file list after saving to database
 		Intent view = new Intent(this, FileListActivity.class);
 		startActivity(view);
 	}

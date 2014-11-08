@@ -11,6 +11,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class LoginActivity extends Activity {
+	/*
+	 * This activity checks for a saved pin in Shared Preferences then either
+	 * starts the Create Account activity or prompts for a pin depending if the
+	 * user has created an account yet
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -18,27 +23,9 @@ public class LoginActivity extends Activity {
 		logIn(findViewById(R.id.create_account_button));
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.login, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
-
 	public void logIn(View v) {
-		// Activated on Login Click. Will check for correct pin, then respond
+		// Method is activated on Login Click. Will check for correct pin, then
+		// respond
 		EditText pin = (EditText) findViewById(R.id.pin);
 		String attempted = pin.getText().toString();
 		// get preferences
@@ -46,9 +33,8 @@ public class LoginActivity extends Activity {
 				getApplicationContext()).getString("pin", null);
 
 		if (savedPin != null) {
-			// Verifies pin number
+			// User has an account
 			if (attempted.equals(savedPin)) {
-				// intent to open file list
 				Intent login = new Intent(this, ActionOptionsActivity.class);
 				startActivity(login);
 			} else {
@@ -69,8 +55,8 @@ public class LoginActivity extends Activity {
 		// changes pin to null
 		PreferenceManager.getDefaultSharedPreferences(getApplicationContext())
 				.edit().putString("pin", null).commit();
-		
-		EditText pinEnter = (EditText)findViewById(R.id.pin);
+
+		EditText pinEnter = (EditText) findViewById(R.id.pin);
 		pinEnter.setText("");
 	}
 }

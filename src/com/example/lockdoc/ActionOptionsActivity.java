@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 
 public class ActionOptionsActivity extends Activity {
+	/*
+	 * Simple activity to open either the FileListActivity or the Upload
+	 * Activity depending on a button
+	 */
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -14,7 +18,6 @@ public class ActionOptionsActivity extends Activity {
 	}
 
 	public void fileList(View v) {
-
 		Intent fileList = new Intent(this, FileListActivity.class);
 		startActivity(fileList);
 	}

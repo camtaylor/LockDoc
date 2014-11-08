@@ -17,6 +17,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 public class UploadActivity extends Activity {
+	/*
+	 * Handle uploads here, from gallery or from camera capture
+	 */
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +32,10 @@ public class UploadActivity extends Activity {
 
 	private OnClickListener cameraListener = new OnClickListener() {
 		public void onClick(View v) {
-			Intent docPreview = new Intent(UploadActivity.this, DocPreviewActivity.class);
+			Intent docPreview = new Intent(UploadActivity.this,
+					DocPreviewActivity.class);
 			startActivity(docPreview);
 		}
 	};
-
 
 }

@@ -11,6 +11,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class DocSave {
+	
+	/*
+	 * Class that handles database reading and writing
+	 */
 
 	private static final String LOGTAG = "LOCDOCDB";
 
@@ -29,7 +33,7 @@ public class DocSave {
 	
 	public class DocSQLiteHelper extends SQLiteOpenHelper {
 
-
+		//sql code to create new table
 		private static final String TABLE_CREATE = "CREATE TABLE " + TABLE_DOCS
 				+ " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
 				+ COLUMN_NAME + " TEXT NOT NULL, " + COLUMN_TYPE
@@ -50,7 +54,6 @@ public class DocSave {
 			db.execSQL("DROP TABLE IF EXISTS " + TABLE_DOCS);
 			onCreate(db);
 		}
-
 	}
 	
 	public DocSave(Context c){
@@ -68,7 +71,7 @@ public class DocSave {
 	}
 
 	public long createEntry(String name, String type, String date) {
-		// TODO Auto-generated method stub
+		// writes to db
 		ContentValues cv = new ContentValues();
 		cv.put(COLUMN_NAME, name);
 		cv.put(COLUMN_TYPE, type);
@@ -77,7 +80,7 @@ public class DocSave {
 	}
 
 	public String getData() {
-		// TODO Auto-generated method stub
+		// gets all data as one string
 		String[] columns = new String[]{COLUMN_ID, COLUMN_NAME, COLUMN_TYPE, COLUMN_DATE};
 		Cursor c = database.query(TABLE_DOCS, columns, null, null, null, null, null, null);
 		String result = "";
@@ -96,7 +99,7 @@ public class DocSave {
 	}
 	
 	public ArrayList<Document> getDocumentList() {
-		// TODO Auto-generated method stub
+		// returns Document object list from database rows
 		String[] columns = new String[]{COLUMN_ID, COLUMN_NAME, COLUMN_TYPE, COLUMN_DATE};
 		Cursor c = database.query(TABLE_DOCS, columns, null, null, null, null, null, null);
 		ArrayList<Document> documents = new ArrayList<Document>();

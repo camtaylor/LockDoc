@@ -35,11 +35,11 @@ public class CreateAccountActivity extends ActionBarActivity {
 		// test input for reliability
 		if (createString.equals(confirmString)) {
 			if (createPin.length() > 2) {
-				// TODO write to shared preferences
+				//writes pin to shared preferences
 				PreferenceManager
 						.getDefaultSharedPreferences(getApplicationContext())
 						.edit().putString("pin", createString).commit();
-				// open login activity
+				// return to login
 				Intent login = new Intent(this, LoginActivity.class);
 				startActivity(login);
 			} else {

@@ -30,13 +30,11 @@ public class Document {
 		this.docType = type;
 	}
 	
-	public Document(long id, String filename, String type, String uploadDate, String privacy, String description){
+	public Document(long id, String filename, String type, String uploadDate){
 		this.id = id;
 		this.filename = filename;
 		this.docType = type;
 		this.uploadDate = uploadDate;
-		this.privacy = privacy;
-		this.description = description;
 	}
 
 	public String getFilename() {

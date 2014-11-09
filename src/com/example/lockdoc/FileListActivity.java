@@ -69,6 +69,21 @@ public class FileListActivity extends Activity implements OnItemClickListener {
 	    builder.setTitle(fileArray.get(position).getFilename())
 	           .setItems(options, new DialogInterface.OnClickListener() {
 	               public void onClick(DialogInterface dialog, int which) {
+	            	switch(which){
+	            		case 0:
+	            			//EditDoc
+	            		   break;
+	            		case 1:
+	            			
+	            			//Delete Doc
+	            		   break;
+	            		case 2:
+	            			//Share Doc
+	            			break;
+	            	}
+	               
+	            	 
+	            		   
 	               // The 'which' argument contains the index position
 	               // of the selected item
 	           }

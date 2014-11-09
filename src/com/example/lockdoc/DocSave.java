@@ -78,6 +78,12 @@ public class DocSave {
 		cv.put(COLUMN_DATE, date);
 		return database.insert(TABLE_DOCS, null, cv);
 	}
+	
+	// TODO Delete Entry at Cursor
+	
+	// TODO Edit Entry at Cursor
+	
+	// TODO Get Entry at ID Cursor
 
 	public String getData() {
 		// gets all data as one string

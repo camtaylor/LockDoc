@@ -3,7 +3,9 @@ package com.example.lockdoc;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,7 +13,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 public class FileListActivity extends Activity implements OnItemClickListener {
 
@@ -63,12 +64,16 @@ public class FileListActivity extends Activity implements OnItemClickListener {
 
 	public void editDialog(AdapterView<?> parent, View v, int position, long id) {
 		// method to create an edit dialog box
-		Dialog d = new Dialog(v.getContext());
-		d.setTitle(fileArray.get(position).getFilename());
-		TextView tv = new TextView(v.getContext());
-		tv.setText("Success");
-		d.setContentView(tv);
-		d.show();
+		String[] options = {"Edit", "Delete", "Share"};
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+	    builder.setTitle(fileArray.get(position).getFilename())
+	           .setItems(options, new DialogInterface.OnClickListener() {
+	               public void onClick(DialogInterface dialog, int which) {
+	               // The 'which' argument contains the index position
+	               // of the selected item
+	           }
+	    });
+		builder.create().show();
 	}
 
 }

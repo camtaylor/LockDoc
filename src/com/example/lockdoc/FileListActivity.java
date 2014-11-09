@@ -65,6 +65,7 @@ public class FileListActivity extends Activity implements OnItemClickListener {
 	public void editDialog(AdapterView<?> parent, View v, int position, long id) {
 		// method to create an edit dialog box
 		String[] options = {"Edit", "Delete", "Share"};
+		final int item = position;
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 	    builder.setTitle(fileArray.get(position).getFilename())
 	           .setItems(options, new DialogInterface.OnClickListener() {
@@ -74,21 +75,32 @@ public class FileListActivity extends Activity implements OnItemClickListener {
 	            			//EditDoc
 	            		   break;
 	            		case 1:
-	            			
-	            			//Delete Doc
+	            			//delete doc
+	            			deleteFromList(item);
 	            		   break;
 	            		case 2:
 	            			//Share Doc
 	            			break;
 	            	}
-	               
-	            	 
 	            		   
 	               // The 'which' argument contains the index position
 	               // of the selected item
 	           }
 	    });
 		builder.create().show();
+	}
+	
+	public void deleteFromList(int position){
+		DocSave db = new DocSave(this);
+		db.open();
+		Document doc = fileArray.get(position);
+		//deletes from db
+		db.deleteEntry(doc.getID());
+		//deletes from list
+		fileArray.remove(position);
+		db.close();
+		//updates list
+		createList();
 	}
 
 }

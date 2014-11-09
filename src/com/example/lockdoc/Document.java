@@ -14,6 +14,8 @@ public class Document {
 	private String filename;
 	private String docType;
 	private String uploadDate;
+	private String privacy;
+	private String description;
 
 	public Document(String filename, String type) {
 		Date docDate = new Date();
@@ -26,6 +28,15 @@ public class Document {
 		this.uploadDate = uploadDate;
 		this.filename = filename;
 		this.docType = type;
+	}
+	
+	public Document(long id, String filename, String type, String uploadDate, String privacy, String description){
+		this.id = id;
+		this.filename = filename;
+		this.docType = type;
+		this.uploadDate = uploadDate;
+		this.privacy = privacy;
+		this.description = description;
 	}
 
 	public String getFilename() {

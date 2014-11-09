@@ -98,6 +98,8 @@ public class DocSave {
 		return result;
 	}
 	
+	
+	
 	public ArrayList<Document> getDocumentList() {
 		// returns Document object list from database rows
 		String[] columns = new String[]{COLUMN_ID, COLUMN_NAME, COLUMN_TYPE, COLUMN_DATE};

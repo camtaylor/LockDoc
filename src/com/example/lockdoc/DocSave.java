@@ -11,11 +11,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class DocSave {
-	
+
 	/*
 	 * Class that handles database reading and writing
 	 */
 
+	// TODO save bitmap of image to column
 	private static final String LOGTAG = "LOCDOCDB";
 
 	private static final String DATABASE_NAME = "docs.db";
@@ -30,10 +31,10 @@ public class DocSave {
 	private DocSQLiteHelper helper;
 	private final Context context;
 	private SQLiteDatabase database;
-	
+
 	public class DocSQLiteHelper extends SQLiteOpenHelper {
 
-		//sql code to create new table
+		// sql code to create new table
 		private static final String TABLE_CREATE = "CREATE TABLE " + TABLE_DOCS
 				+ " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
 				+ COLUMN_NAME + " TEXT NOT NULL, " + COLUMN_TYPE
@@ -55,18 +56,20 @@ public class DocSave {
 			onCreate(db);
 		}
 	}
-	
-	public DocSave(Context c){
+
+	public DocSave(Context c) {
 		context = c;
 	}
-	
-	public DocSave open() throws SQLException{
+
+	public DocSave open() throws SQLException {
+		// opens database connection
 		helper = new DocSQLiteHelper(context);
 		database = helper.getWritableDatabase();
 		return this;
 	}
-	
-	public void close(){
+
+	public void close() {
+		// closes database connection
 		helper.close();
 	}
 
@@ -78,52 +81,59 @@ public class DocSave {
 		cv.put(COLUMN_DATE, date);
 		return database.insert(TABLE_DOCS, null, cv);
 	}
-	
+
 	// TODO Delete Entry at Cursor
-	
+	public void deleteEntry(long ID) {
+		database.delete(TABLE_DOCS, COLUMN_ID + "=" + ID, null);
+	}
+
 	// TODO Edit Entry at Cursor
-	
+
 	// TODO Get Entry at ID Cursor
 
 	public String getData() {
 		// gets all data as one string
-		String[] columns = new String[]{COLUMN_ID, COLUMN_NAME, COLUMN_TYPE, COLUMN_DATE};
-		Cursor c = database.query(TABLE_DOCS, columns, null, null, null, null, null, null);
+		String[] columns = new String[] { COLUMN_ID, COLUMN_NAME, COLUMN_TYPE,
+				COLUMN_DATE };
+		Cursor c = database.query(TABLE_DOCS, columns, null, null, null, null,
+				null, null);
 		String result = "";
-		
+
 		int iRow = c.getColumnIndex(COLUMN_ID);
 		int iName = c.getColumnIndex(COLUMN_NAME);
 		int iType = c.getColumnIndex(COLUMN_TYPE);
 		int iDate = c.getColumnIndex(COLUMN_DATE);
-		
-		//cycle through database
-		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()){
-			result = result + c.getString(iRow) + " " + c.getString(iName) + " " + c.getString(iType) + " " + c.getString(iDate) + "\n";
+
+		// cycle through database
+		for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+			result = result + c.getString(iRow) + " " + c.getString(iName)
+					+ " " + c.getString(iType) + " " + c.getString(iDate)
+					+ "\n";
 		}
-		
+
 		return result;
 	}
-	
-	
-	
+
 	public ArrayList<Document> getDocumentList() {
 		// returns Document object list from database rows
-		String[] columns = new String[]{COLUMN_ID, COLUMN_NAME, COLUMN_TYPE, COLUMN_DATE};
-		Cursor c = database.query(TABLE_DOCS, columns, null, null, null, null, null, null);
+		String[] columns = new String[] { COLUMN_ID, COLUMN_NAME, COLUMN_TYPE,
+				COLUMN_DATE };
+		Cursor c = database.query(TABLE_DOCS, columns, null, null, null, null,
+				null, null);
 		ArrayList<Document> documents = new ArrayList<Document>();
-		
+
 		int iRow = c.getColumnIndex(COLUMN_ID);
 		int iName = c.getColumnIndex(COLUMN_NAME);
 		int iType = c.getColumnIndex(COLUMN_TYPE);
 		int iDate = c.getColumnIndex(COLUMN_DATE);
-	
-		//cycle through database
-		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()){
-			Document doc = new Document(c.getString(iName), c.getString(iType),c.getString(iDate));
+
+		// cycle through database
+		for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+			Document doc = new Document(Long.parseLong(c.getString(iRow)), c.getString(iName), c.getString(iType),
+					c.getString(iDate));
 			documents.add(doc);
-			
 		}
-		
+
 		return documents;
 	}
 

@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -66,12 +67,21 @@ public class FileListActivity extends Activity implements OnItemClickListener {
 		// method to create an edit dialog box
 		String[] options = {"Edit", "Delete", "Share"};
 		final int item = position;
+		final Document doc = fileArray.get(item);
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 	    builder.setTitle(fileArray.get(position).getFilename())
 	           .setItems(options, new DialogInterface.OnClickListener() {
 	               public void onClick(DialogInterface dialog, int which) {
 	            	switch(which){
 	            		case 0:
+	            			/* Create intent and pass document to docPreview
+	            			 * check if coming from new creation or update
+	            			 * docPreview loads doc to location
+	            			 * update method
+	            			 */
+	            			 editFromList(doc);
+	            			
+	            			
 	            			//EditDoc
 	            		   break;
 	            		case 1:
@@ -88,6 +98,12 @@ public class FileListActivity extends Activity implements OnItemClickListener {
 	           }
 	    });
 		builder.create().show();
+	}
+	
+	public void editFromList(Document doc){
+		Intent editDoc = new Intent(this, DocPreviewActivity.class);
+		editDoc.putExtra("ID", doc.getID());
+		startActivity(editDoc);
 	}
 	
 	public void deleteFromList(int position){

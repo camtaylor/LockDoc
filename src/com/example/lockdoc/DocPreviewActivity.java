@@ -72,8 +72,8 @@ public class DocPreviewActivity extends ActionBarActivity {
 		name.setText(doc.getFilename());
 		EditText type = (EditText) findViewById(R.id.doc_type);
 		type.setText(doc.getDocType());
-		// EditText description = (EditText) findViewById(R.id.doc_description);
-		// type.setText(doc.getDocDescription());
+		EditText description = (EditText) findViewById(R.id.doc_description);
+		description.setText(doc.getDescription());
 	}
 
 	@Override
@@ -108,6 +108,8 @@ public class DocPreviewActivity extends ActionBarActivity {
 		String name = docName.getText().toString();
 		EditText docType = (EditText) findViewById(R.id.doc_type);
 		String type = docType.getText().toString();
+		EditText docDescription = (EditText) findViewById(R.id.doc_description);
+		String description = docDescription.getText().toString();
 		// TODO delete
 		Document doc = new Document(name, type);
 		String date = doc.getUploadDate();
@@ -117,7 +119,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 		try {
 			DocSave entry = new DocSave(this);
 			entry.open();
-			entry.createEntry(name, type, date);
+			entry.createEntry(name, type, date, description);
 			entry.close();
 		} catch (Exception e) {
 			didItWork = false;
@@ -131,7 +133,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 		else{
 			DocSave entry = new DocSave(this);
 			entry.open();
-			entry.editEntry(id, name, type);
+			entry.editEntry(id, name, type, description);
 			entry.close();
 		}
 		// starts file list after saving to database

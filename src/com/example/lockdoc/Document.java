@@ -30,11 +30,12 @@ public class Document {
 		this.docType = type;
 	}
 	
-	public Document(long id, String filename, String type, String uploadDate){
+	public Document(long id, String filename, String type, String uploadDate, String description){
 		this.id = id;
 		this.filename = filename;
 		this.docType = type;
 		this.uploadDate = uploadDate;
+		this.setDescription(description);
 	}
 
 	public String getFilename() {
@@ -70,6 +71,14 @@ public class Document {
 
 	public void setID(long id) {
 		this.id = id;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }

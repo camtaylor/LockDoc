@@ -64,7 +64,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/doc_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -78,11 +78,26 @@
         android:text="Privacy Level:"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
+    <RadioGroup
+        android:id="@+id/radioPrivacy"
+        >
     <RadioButton
         android:id="@+id/radioButton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="High Privacy" />
+        android:text="High" />
+    <RadioButton
+        android:id="@+id/radioButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Medium" />
+        <RadioButton
+        android:id="@+id/radioButton3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Low" />
+    
+    </RadioGroup>
 
     <Button
         android:id="@+id/save_button"

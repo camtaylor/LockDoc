@@ -80,19 +80,20 @@
 
     <RadioGroup
         android:id="@+id/radioPrivacy"
+        android:checkedButton="@+id/low_button"
         >
     <RadioButton
-        android:id="@+id/radioButton1"
+        android:id="@+id/high_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="High" />
     <RadioButton
-        android:id="@+id/radioButton2"
+        android:id="@+id/medium_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Medium" />
         <RadioButton
-        android:id="@+id/radioButton3"
+        android:id="@+id/low_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Low" />

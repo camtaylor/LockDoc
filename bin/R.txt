@@ -274,6 +274,7 @@ int id expand_activities_button 0x7f060026
 int id expanded_menu 0x7f06002c
 int id file_view 0x7f060054
 int id header 0x7f060048
+int id high_button 0x7f06004f
 int id home 0x7f060014
 int id homeAsUp 0x7f060005
 int id icon 0x7f06002a
@@ -282,6 +283,8 @@ int id image 0x7f060027
 int id image_camera 0x7f060041
 int id listMode 0x7f060001
 int id list_item 0x7f060029
+int id low_button 0x7f06004e
+int id medium_button 0x7f060050
 int id middle 0x7f060012
 int id nameView 0x7f060058
 int id never 0x7f060009
@@ -293,9 +296,6 @@ int id pin_create 0x7f060043
 int id progress_circular 0x7f060018
 int id progress_horizontal 0x7f060019
 int id radio 0x7f06002f
-int id radioButton1 0x7f06004e
-int id radioButton2 0x7f06004f
-int id radioButton3 0x7f060050
 int id radioPrivacy 0x7f06004d
 int id save_button 0x7f060051
 int id score_table 0x7f060046

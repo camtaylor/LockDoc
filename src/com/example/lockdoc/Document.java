@@ -30,12 +30,14 @@ public class Document {
 		this.docType = type;
 	}
 	
-	public Document(long id, String filename, String type, String uploadDate, String description){
+	public Document(long id, String filename, String type, String uploadDate, 
+			String description, String privacy){
 		this.id = id;
 		this.filename = filename;
 		this.docType = type;
 		this.uploadDate = uploadDate;
 		this.setDescription(description);
+		this.setPrivacy(privacy);
 	}
 
 	public String getFilename() {
@@ -79,6 +81,20 @@ public class Document {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getPrivacy() {
+		return privacy;
+	}
+
+	public void setPrivacy(String privacy) {
+		//only 3 options for privacy
+		if(privacy.equals("High"))
+			this.privacy = privacy;
+		else if(privacy.equals("Medium"))
+			this.privacy = privacy;
+		else
+			this.privacy = "Low";
 	}
 
 }

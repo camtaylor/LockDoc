@@ -4,7 +4,6 @@ package com.example.lockdoc;
 import java.io.File;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -17,7 +16,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 public class DocPreviewActivity extends ActionBarActivity {
@@ -74,6 +74,13 @@ public class DocPreviewActivity extends ActionBarActivity {
 		type.setText(doc.getDocType());
 		EditText description = (EditText) findViewById(R.id.doc_description);
 		description.setText(doc.getDescription());
+		RadioGroup rg = (RadioGroup) findViewById(R.id.radioPrivacy);
+		if(doc.getPrivacy().equals("High"))
+			rg.check(R.id.high_button);
+		else if(doc.getPrivacy().equals("Medium"))
+			rg.check(R.id.medium_button);
+		else
+			rg.check(R.id.low_button);
 	}
 
 	@Override
@@ -114,12 +121,17 @@ public class DocPreviewActivity extends ActionBarActivity {
 		Document doc = new Document(name, type);
 		String date = doc.getUploadDate();
 		// save in db and start new activity for classification
+		RadioGroup rg = (RadioGroup)findViewById(R.id.radioPrivacy);
+		RadioButton privacyButton = (RadioButton)findViewById(rg.getCheckedRadioButtonId());
+		String privacy = privacyButton.getText().toString();
 		boolean didItWork = true;
+		
+		//check if it is a new doc or old one
 		if(newDoc){
 		try {
 			DocSave entry = new DocSave(this);
 			entry.open();
-			entry.createEntry(name, type, date, description);
+			entry.createEntry(name, type, date, description, privacy);
 			entry.close();
 		} catch (Exception e) {
 			didItWork = false;

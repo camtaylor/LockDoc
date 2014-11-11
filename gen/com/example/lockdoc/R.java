@@ -1119,6 +1119,7 @@ containing a value of this type.
         public static final int expanded_menu=0x7f06002c;
         public static final int file_view=0x7f060054;
         public static final int header=0x7f060048;
+        public static final int high_button=0x7f06004f;
         public static final int home=0x7f060014;
         public static final int homeAsUp=0x7f060005;
         public static final int icon=0x7f06002a;
@@ -1127,6 +1128,8 @@ containing a value of this type.
         public static final int image_camera=0x7f060041;
         public static final int listMode=0x7f060001;
         public static final int list_item=0x7f060029;
+        public static final int low_button=0x7f06004e;
+        public static final int medium_button=0x7f060050;
         public static final int middle=0x7f060012;
         public static final int nameView=0x7f060058;
         public static final int never=0x7f060009;
@@ -1138,9 +1141,6 @@ containing a value of this type.
         public static final int progress_circular=0x7f060018;
         public static final int progress_horizontal=0x7f060019;
         public static final int radio=0x7f06002f;
-        public static final int radioButton1=0x7f06004e;
-        public static final int radioButton2=0x7f06004f;
-        public static final int radioButton3=0x7f060050;
         public static final int radioPrivacy=0x7f06004d;
         public static final int save_button=0x7f060051;
         public static final int score_table=0x7f060046;

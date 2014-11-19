@@ -5,6 +5,8 @@ import java.io.File;
 
 import android.app.Activity;
 import android.content.ContentResolver;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -49,10 +51,10 @@ public class DocPreviewActivity extends ActionBarActivity {
 	private void takePhoto() {
 		// sends intent to built in Android camera
 		Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-		File photo = new File(
-				Environment
-						.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
-				"picture.jpg");
+		ContextWrapper cw = new ContextWrapper(getApplicationContext());
+		File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
+
+		File photo = new File(directory, "picture.jpg");
 		imageUri = Uri.fromFile(photo);
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
 		startActivityForResult(intent, TAKE_PICTURE);
@@ -75,9 +77,9 @@ public class DocPreviewActivity extends ActionBarActivity {
 		EditText description = (EditText) findViewById(R.id.doc_description);
 		description.setText(doc.getDescription());
 		RadioGroup rg = (RadioGroup) findViewById(R.id.radioPrivacy);
-		if(doc.getPrivacy().equals("High"))
+		if (doc.getPrivacy().equals("High"))
 			rg.check(R.id.high_button);
-		else if(doc.getPrivacy().equals("Medium"))
+		else if (doc.getPrivacy().equals("Medium"))
 			rg.check(R.id.medium_button);
 		else
 			rg.check(R.id.low_button);
@@ -121,28 +123,28 @@ public class DocPreviewActivity extends ActionBarActivity {
 		Document doc = new Document(name, type);
 		String date = doc.getUploadDate();
 		// save in db and start new activity for classification
-		RadioGroup rg = (RadioGroup)findViewById(R.id.radioPrivacy);
-		RadioButton privacyButton = (RadioButton)findViewById(rg.getCheckedRadioButtonId());
+		RadioGroup rg = (RadioGroup) findViewById(R.id.radioPrivacy);
+		RadioButton privacyButton = (RadioButton) findViewById(rg
+				.getCheckedRadioButtonId());
 		String privacy = privacyButton.getText().toString();
 		boolean didItWork = true;
-		
-		//check if it is a new doc or old one
-		if(newDoc){
-		try {
-			DocSave entry = new DocSave(this);
-			entry.open();
-			entry.createEntry(name, type, date, description, privacy);
-			entry.close();
-		} catch (Exception e) {
-			didItWork = false;
-		} finally {
-			if (didItWork) {
-				Toast.makeText(getApplicationContext(), "Image saved",
-						Toast.LENGTH_LONG).show();
+
+		// check if it is a new doc or old one
+		if (newDoc) {
+			try {
+				DocSave entry = new DocSave(this);
+				entry.open();
+				entry.createEntry(name, type, date, description, privacy);
+				entry.close();
+			} catch (Exception e) {
+				didItWork = false;
+			} finally {
+				if (didItWork) {
+					Toast.makeText(getApplicationContext(), "Image saved",
+							Toast.LENGTH_LONG).show();
+				}
 			}
-		}
-		}
-		else{
+		} else {
 			DocSave entry = new DocSave(this);
 			entry.open();
 			entry.editEntry(id, name, type, description);

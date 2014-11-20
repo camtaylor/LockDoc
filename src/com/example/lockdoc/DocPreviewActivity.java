@@ -51,10 +51,12 @@ public class DocPreviewActivity extends ActionBarActivity {
 	private void takePhoto() {
 		// sends intent to built in Android camera
 		Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-		ContextWrapper cw = new ContextWrapper(getApplicationContext());
-		File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
 
-		File photo = new File(directory, "picture.jpg");
+		File photo = new File(
+				Environment
+						.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+				"picture.jpg");
+
 		imageUri = Uri.fromFile(photo);
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
 		startActivityForResult(intent, TAKE_PICTURE);

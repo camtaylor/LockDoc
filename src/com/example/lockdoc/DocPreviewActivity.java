@@ -160,6 +160,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 			try {
 				DocSave entry = new DocSave(this);
 				entry.open();
+				//TODO load filename from internal storage
 				entry.createEntry(name, type, date, description, privacy);
 				entry.close();
 			} catch (Exception e) {

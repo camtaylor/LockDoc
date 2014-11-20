@@ -11,41 +11,34 @@ public class Document {
 	 * Document Object for LocDoc Data Model for Database
 	 */
 	private long id;
-	private String filename;
+	private String name;
 	private String docType;
 	private String uploadDate;
 	private String privacy;
 	private String description;
+	private String filename;
 
-	public Document(String filename, String type) {
-		Date docDate = new Date();
-		this.uploadDate = formatUploadDate(docDate);
-		this.filename = filename;
+	public Document(String name, String type){
+		this.name = name;
 		this.docType = type;
 	}
-
-	public Document(String filename, String type, String uploadDate) {
-		this.uploadDate = uploadDate;
-		this.filename = filename;
-		this.docType = type;
-	}
-	
-	public Document(long id, String filename, String type, String uploadDate, 
-			String description, String privacy){
+	public Document(long id, String name, String type, String uploadDate, 
+			String description, String privacy, String filename){
 		this.id = id;
-		this.filename = filename;
+		this.name = name;
 		this.docType = type;
 		this.uploadDate = uploadDate;
 		this.setDescription(description);
 		this.setPrivacy(privacy);
+		this.setFilename(filename);
 	}
 
-	public String getFilename() {
-		return filename;
+	public String getname() {
+		return name;
 	}
 
-	public void setFilename(String filename) {
-		this.filename = filename;
+	public void setname(String name) {
+		this.name = name;
 	}
 
 	public String getDocType() {
@@ -95,6 +88,14 @@ public class Document {
 			this.privacy = privacy;
 		else
 			this.privacy = "Low";
+	}
+
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
 	}
 
 }

@@ -37,6 +37,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 	private static String logtag = "DocPreviewActivity";
 	boolean newDoc = true;
 	long id;
+	String internalPath;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +111,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 			Random randomInt = new Random();
 			int tempInt = randomInt.nextInt(10000);
 			File mypath = new File(directory, Integer.toString(tempInt));
-			
+			internalPath = mypath.getAbsolutePath();
 			FileOutputStream fos = null;
 			try {
 				fos = new FileOutputStream(mypath);
@@ -145,7 +146,6 @@ public class DocPreviewActivity extends ActionBarActivity {
 		String type = docType.getText().toString();
 		EditText docDescription = (EditText) findViewById(R.id.doc_description);
 		String description = docDescription.getText().toString();
-		// TODO delete
 		Document doc = new Document(name, type);
 		String date = doc.getUploadDate();
 		// save in db and start new activity for classification
@@ -159,9 +159,8 @@ public class DocPreviewActivity extends ActionBarActivity {
 		if (newDoc) {
 			try {
 				DocSave entry = new DocSave(this);
-				entry.open();
-				//TODO load filename from internal storage
-				entry.createEntry(name, type, date, description, privacy);
+				entry.open();				
+				entry.createEntry(name, type, date, description, privacy, internalPath);
 				entry.close();
 			} catch (Exception e) {
 				didItWork = false;

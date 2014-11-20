@@ -55,7 +55,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 		File photo = new File(
 				Environment
 						.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
-				"picture.jpg");
+				"lockdoctemp.jpg");
 
 		imageUri = Uri.fromFile(photo);
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);

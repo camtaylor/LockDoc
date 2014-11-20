@@ -3,6 +3,7 @@ package com.example.lockdoc;
 // Delete me later
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.Random;
 
@@ -13,6 +14,7 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -84,6 +86,18 @@ public class DocPreviewActivity extends ActionBarActivity {
 		EditText description = (EditText) findViewById(R.id.doc_description);
 		description.setText(doc.getDescription());
 		RadioGroup rg = (RadioGroup) findViewById(R.id.radioPrivacy);
+
+
+		try {
+			ImageView iv = (ImageView) findViewById(R.id.image_camera);
+			FileInputStream is;
+			is = new FileInputStream(doc.getPath());
+			Bitmap b = BitmapFactory.decodeStream(is);
+			iv.setImageBitmap(b);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+
 		if (doc.getPrivacy().equals("High"))
 			rg.check(R.id.high_button);
 		else if (doc.getPrivacy().equals("Medium"))
@@ -110,7 +124,8 @@ public class DocPreviewActivity extends ActionBarActivity {
 
 			Random randomInt = new Random();
 			int tempInt = randomInt.nextInt(10000);
-			File mypath = new File(directory, Integer.toString(tempInt));
+			File mypath = new File(directory, Integer.toString(tempInt)
+					+ ".1234jpeg");
 			internalPath = mypath.getAbsolutePath();
 			FileOutputStream fos = null;
 			try {

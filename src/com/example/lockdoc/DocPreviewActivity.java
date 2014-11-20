@@ -134,7 +134,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 			Random randomInt = new Random();
 			int tempInt = randomInt.nextInt(10000);
 			File mypath = new File(directory, Integer.toString(tempInt)
-					+ ".1234jpeg");
+					+ ".jpeg");
 			internalPath = mypath.getAbsolutePath();
 			FileOutputStream fos = null;
 			try {

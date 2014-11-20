@@ -116,8 +116,6 @@ public class DocPreviewActivity extends ActionBarActivity {
 				fos = new FileOutputStream(mypath);
 				// sets image view to image
 				bitmap = MediaStore.Images.Media.getBitmap(cr, selectedImage);
-				//TODO uncomment if failed
-				//imageView.setImageBitmap(bitmap);
 				bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
 				fos.close();
 				//load bitmap from internal storage
@@ -127,6 +125,12 @@ public class DocPreviewActivity extends ActionBarActivity {
 				Log.e(logtag, e.toString());
 			}
 		}
+		
+		File toDelete = new File(
+				Environment
+				.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+				"lockdoctemp.jpg");
+		toDelete.delete();
 	}
 
 	public void upload(View v) {

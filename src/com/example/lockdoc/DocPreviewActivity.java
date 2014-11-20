@@ -108,7 +108,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 			File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
 			
 			Random randomInt = new Random();
-			int tempInt = randomInt.nextInt(1000);
+			int tempInt = randomInt.nextInt(10000);
 			File mypath = new File(directory, Integer.toString(tempInt));
 			
 			FileOutputStream fos = null;

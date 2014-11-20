@@ -2,6 +2,7 @@ package com.example.lockdoc;
 
 // Delete me later
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.Random;
 
@@ -11,6 +12,7 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -114,9 +116,13 @@ public class DocPreviewActivity extends ActionBarActivity {
 				fos = new FileOutputStream(mypath);
 				// sets image view to image
 				bitmap = MediaStore.Images.Media.getBitmap(cr, selectedImage);
-				imageView.setImageBitmap(bitmap);
+				//TODO uncomment if failed
+				//imageView.setImageBitmap(bitmap);
 				bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
 				fos.close();
+				//load bitmap from internal storage
+				Bitmap b = BitmapFactory.decodeStream(new FileInputStream(mypath));
+				imageView.setImageBitmap(b);
 			} catch (Exception e) {
 				Log.e(logtag, e.toString());
 			}

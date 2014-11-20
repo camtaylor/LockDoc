@@ -26,4 +26,6 @@ public class ActionOptionsActivity extends Activity {
 		Intent captureDoc = new Intent(this, UploadActivity.class);
 		startActivity(captureDoc);
 	}
+	
+	
 }

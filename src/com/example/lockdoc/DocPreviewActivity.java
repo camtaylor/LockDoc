@@ -12,9 +12,9 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -39,7 +39,10 @@ public class DocPreviewActivity extends ActionBarActivity {
 	private static String logtag = "DocPreviewActivity";
 	boolean newDoc = true;
 	long id;
-	String internalPath;
+	private String internalPath;
+	private Bitmap bitmap;
+	private ImageView image;
+	private static final int PICK_IMAGE = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,13 @@ public class DocPreviewActivity extends ActionBarActivity {
 			editPreview(id);
 			newDoc = false;
 		}
+	}
+
+	public void selectImage() {
+		Intent intent = new Intent("android.media.action.ACTION_GET_CONTENT");
+		intent.setType("image/*");
+		startActivityForResult(Intent.createChooser(intent, "Select File"),
+				PICK_IMAGE);
 	}
 
 	private void takePhoto() {
@@ -87,7 +97,6 @@ public class DocPreviewActivity extends ActionBarActivity {
 		description.setText(doc.getDescription());
 		RadioGroup rg = (RadioGroup) findViewById(R.id.radioPrivacy);
 
-
 		try {
 			ImageView iv = (ImageView) findViewById(R.id.image_camera);
 			FileInputStream is;
@@ -117,7 +126,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 			getContentResolver().notifyChange(selectedImage, null);
 			ImageView imageView = (ImageView) findViewById(R.id.image_camera);
 			ContentResolver cr = getContentResolver();
-			Bitmap bitmap;
+			// Bitmap bitmap;
 
 			ContextWrapper cw = new ContextWrapper(getApplicationContext());
 			File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
@@ -143,11 +152,52 @@ public class DocPreviewActivity extends ActionBarActivity {
 			}
 		}
 
+		if (requestCode == PICK_IMAGE && resultCode == RESULT_OK
+				&& null != intent) {
+			Uri selectedImage = intent.getData();
+			String[] filePath = { MediaStore.Images.Media.DATA };
+
+			Cursor cursor = getContentResolver().query(selectedImage, filePath,
+					null, null, null);
+			cursor.moveToFirst();
+
+			int columnInd = cursor.getColumnIndex(filePath[0]);
+			String picPath = cursor.getString(columnInd);
+			cursor.close();
+
+			decodeFile(picPath);
+		}
+
 		File toDelete = new File(
 				Environment
 						.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
 				"lockdoctemp.jpg");
 		toDelete.delete();
+	}
+
+	public void decodeFile(String path) {
+		BitmapFactory.Options opt = new BitmapFactory.Options();
+		opt.inJustDecodeBounds = true;
+		BitmapFactory.decodeFile(path, opt);
+
+		final int REQUIRED_SIZE = 1024; // Scaled Size
+
+		int width = opt.outWidth;
+		int height = opt.outHeight;
+		int scale = 1;
+		while (true) {
+			if (width < REQUIRED_SIZE && height < REQUIRED_SIZE)
+				break;
+			width /= 2;
+			height /= 2;
+			scale *= 2;
+		}
+
+		BitmapFactory.Options opt2 = new BitmapFactory.Options();
+		opt2.inSampleSize = scale;
+		bitmap = BitmapFactory.decodeFile(path, opt2);
+
+		image.setImageBitmap(bitmap);
 	}
 
 	public void upload(View v) {

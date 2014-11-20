@@ -7,20 +7,34 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.lockdoc.UploadActivity" >
-
-    <Button
-        android:id="@+id/button_camera"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="165dp"
-        android:text="Take Picture" />
     
         <ImageView 
         android:id="@+id/image_camera"
         android:contentDescription="@string/image_cd_camera"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>
+    
+
+
+        <Button
+            android:id="@+id/button_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/image_camera"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="106dp"
+            android:onClick="takePhoto"
+            android:text="Take Picture" />
+
+
+	    
+	    <Button
+	        android:id="@+id/selectImageButton"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_alignLeft="@+id/image_camera"
+	        android:layout_centerVertical="true"
+	        android:onClick="selectImage"
+	        android:text="Select Image" />
 
 </RelativeLayout>

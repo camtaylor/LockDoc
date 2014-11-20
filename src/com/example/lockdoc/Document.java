@@ -11,34 +11,34 @@ public class Document {
 	 * Document Object for LocDoc Data Model for Database
 	 */
 	private long id;
-	private String name;
+	private String filename;
 	private String docType;
 	private String uploadDate;
 	private String privacy;
 	private String description;
-	private String filename;
+	private String path;
 
-	public Document(String name, String type){
-		this.name = name;
+	public Document(String filename, String type){
+		this.filename = filename;
 		this.docType = type;
 	}
-	public Document(long id, String name, String type, String uploadDate, 
-			String description, String privacy, String filename){
+	public Document(long id, String filename, String type, String uploadDate, 
+			String description, String privacy, String path){
 		this.id = id;
-		this.name = name;
+		this.filename = filename;
 		this.docType = type;
 		this.uploadDate = uploadDate;
 		this.setDescription(description);
 		this.setPrivacy(privacy);
-		this.setFilename(filename);
+		this.setPath(path);
 	}
 
-	public String getname() {
-		return name;
+	public String getFilename() {
+		return filename;
 	}
 
-	public void setname(String name) {
-		this.name = name;
+	public void setFilename(String filename) {
+		this.filename = filename;
 	}
 
 	public String getDocType() {
@@ -90,12 +90,12 @@ public class Document {
 			this.privacy = "Low";
 	}
 
-	public String getFilename() {
-		return filename;
+	public String getPath() {
+		return path;
 	}
 
-	public void setFilename(String filename) {
-		this.filename = filename;
+	public void setPath(String path) {
+		this.path = path;
 	}
 
 }

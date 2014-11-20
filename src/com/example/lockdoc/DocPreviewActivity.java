@@ -2,6 +2,8 @@ package com.example.lockdoc;
 
 // Delete me later
 import java.io.File;
+import java.io.FileOutputStream;
+import java.util.Random;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -55,7 +57,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 		File photo = new File(
 				Environment
 						.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
-				"picture.jpg");
+				"lockdoctemp.jpg");
 
 		imageUri = Uri.fromFile(photo);
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
@@ -91,18 +93,30 @@ public class DocPreviewActivity extends ActionBarActivity {
 	protected void onActivityResult(int requestCode, int resultCode,
 			Intent intent) {
 		super.onActivityResult(requestCode, resultCode, intent);
-
+		
 		if (resultCode == Activity.RESULT_OK) {
+			
 			Uri selectedImage = imageUri;
 			getContentResolver().notifyChange(selectedImage, null);
 			ImageView imageView = (ImageView) findViewById(R.id.image_camera);
 			ContentResolver cr = getContentResolver();
 			Bitmap bitmap;
 
+			ContextWrapper cw = new ContextWrapper(getApplicationContext());
+			File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
+			
+			Random randomInt = new Random();
+			int tempInt = randomInt.nextInt(1000);
+			File mypath = new File(directory, Integer.toString(tempInt));
+			
+			FileOutputStream fos = null;
 			try {
+				fos = new FileOutputStream(mypath);
 				// sets image view to image
 				bitmap = MediaStore.Images.Media.getBitmap(cr, selectedImage);
 				imageView.setImageBitmap(bitmap);
+				bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+				fos.close();
 			} catch (Exception e) {
 				Log.e(logtag, e.toString());
 			}

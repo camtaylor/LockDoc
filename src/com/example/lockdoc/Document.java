@@ -18,7 +18,9 @@ public class Document {
 	private String description;
 	private String path;
 
-	public Document(String filename, String type){
+	public Document(String filename, String type) {
+		Date docDate = new Date();
+		this.uploadDate = formatUploadDate(docDate);
 		this.filename = filename;
 		this.docType = type;
 	}

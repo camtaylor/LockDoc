@@ -96,9 +96,9 @@ public class DocPreviewActivity extends ActionBarActivity {
 	protected void onActivityResult(int requestCode, int resultCode,
 			Intent intent) {
 		super.onActivityResult(requestCode, resultCode, intent);
-		
+
 		if (resultCode == Activity.RESULT_OK) {
-			
+
 			Uri selectedImage = imageUri;
 			getContentResolver().notifyChange(selectedImage, null);
 			ImageView imageView = (ImageView) findViewById(R.id.image_camera);
@@ -107,7 +107,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 
 			ContextWrapper cw = new ContextWrapper(getApplicationContext());
 			File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
-			
+
 			Random randomInt = new Random();
 			int tempInt = randomInt.nextInt(10000);
 			File mypath = new File(directory, Integer.toString(tempInt));
@@ -119,17 +119,18 @@ public class DocPreviewActivity extends ActionBarActivity {
 				bitmap = MediaStore.Images.Media.getBitmap(cr, selectedImage);
 				bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
 				fos.close();
-				//load bitmap from internal storage
-				Bitmap b = BitmapFactory.decodeStream(new FileInputStream(mypath));
+				// load bitmap from internal storage
+				Bitmap b = BitmapFactory.decodeStream(new FileInputStream(
+						mypath));
 				imageView.setImageBitmap(b);
 			} catch (Exception e) {
 				Log.e(logtag, e.toString());
 			}
 		}
-		
+
 		File toDelete = new File(
 				Environment
-				.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+						.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
 				"lockdoctemp.jpg");
 		toDelete.delete();
 	}
@@ -159,8 +160,9 @@ public class DocPreviewActivity extends ActionBarActivity {
 		if (newDoc) {
 			try {
 				DocSave entry = new DocSave(this);
-				entry.open();				
-				entry.createEntry(name, type, date, description, privacy, internalPath);
+				entry.open();
+				entry.createEntry(name, type, date, description, privacy,
+						internalPath);
 				entry.close();
 			} catch (Exception e) {
 				didItWork = false;

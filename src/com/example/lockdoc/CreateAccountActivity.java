@@ -18,6 +18,7 @@ public class CreateAccountActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_create_account);
+		setTitle("Create Account");
 	}
 
 	public void savePin(View v) {
@@ -35,7 +36,7 @@ public class CreateAccountActivity extends ActionBarActivity {
 		// test input for reliability
 		if (createString.equals(confirmString)) {
 			if (createPin.length() > 2) {
-				//writes pin to shared preferences
+				// writes pin to shared preferences
 				PreferenceManager
 						.getDefaultSharedPreferences(getApplicationContext())
 						.edit().putString("pin", createString).commit();

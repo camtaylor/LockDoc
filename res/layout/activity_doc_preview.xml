@@ -28,7 +28,7 @@
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:text="Name:"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 

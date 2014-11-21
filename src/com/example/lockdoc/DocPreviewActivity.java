@@ -48,12 +48,14 @@ public class DocPreviewActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_doc_preview);
+		setTitle("Preview");
 		Bundle extras = getIntent().getExtras();
 		if (extras == null)
 			takePhoto();
-		else if(extras.getBoolean("Select") == true)
+		else if (extras.getBoolean("Select") == true) {
 			selectImage();
-		else {
+			setTitle(extras.getString("name"));
+		} else {
 			id = extras.getLong("ID");
 			editPreview(id);
 			newDoc = false;
@@ -137,8 +139,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 			cursor.close();
 
 			decodeFile(picPath);
-		}
-		else if (resultCode == Activity.RESULT_OK) {
+		} else if (resultCode == Activity.RESULT_OK) {
 
 			Uri selectedImage = imageUri;
 			getContentResolver().notifyChange(selectedImage, null);
@@ -169,7 +170,6 @@ public class DocPreviewActivity extends ActionBarActivity {
 				Log.e(logtag, e.toString());
 			}
 		}
-
 
 		File toDelete = new File(
 				Environment

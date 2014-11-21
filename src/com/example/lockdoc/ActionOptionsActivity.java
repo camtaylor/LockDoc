@@ -15,6 +15,7 @@ public class ActionOptionsActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_action_options);
+		setTitle("LockDoc");
 	}
 
 	public void fileList(View v) {
@@ -26,6 +27,5 @@ public class ActionOptionsActivity extends Activity {
 		Intent captureDoc = new Intent(this, UploadActivity.class);
 		startActivity(captureDoc);
 	}
-	
-	
+
 }

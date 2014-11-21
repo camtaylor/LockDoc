@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -63,62 +62,62 @@ public class FileListActivity extends Activity implements OnItemClickListener {
 		Document doc = fileArray.get(position);
 		Intent docViewer = new Intent(this, DocViewerActivity.class);
 		docViewer.putExtra("path", doc.getPath());
+		docViewer.putExtra("name", doc.getFilename());
 		startActivity(docViewer);
 	}
 
 	public void editDialog(AdapterView<?> parent, View v, int position, long id) {
 		// method to create an edit dialog box
-		String[] options = {"Edit", "Delete", "Share"};
+		String[] options = { "Edit", "Delete", "Share" };
 		final int item = position;
 		final Document doc = fileArray.get(item);
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-	    builder.setTitle(fileArray.get(position).getFilename())
-	           .setItems(options, new DialogInterface.OnClickListener() {
-	               public void onClick(DialogInterface dialog, int which) {
-	            	switch(which){
-	            		case 0:
-	            			/* Create intent and pass document to docPreview
-	            			 * check if coming from new creation or update
-	            			 * docPreview loads doc to location
-	            			 * update method
-	            			 */
-	            			 editFromList(doc);
-	            			
-	            			
-	            			//EditDoc
-	            		   break;
-	            		case 1:
-	            			//delete doc
-	            			deleteFromList(item);
-	            		   break;
-	            		case 2:
-	            			//Share Doc
-	            			break;
-	            	}
-	            		   
-	               // The 'which' argument contains the index position
-	               // of the selected item
-	           }
-	    });
+		builder.setTitle(fileArray.get(position).getFilename()).setItems(
+				options, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						switch (which) {
+						case 0:
+							/*
+							 * Create intent and pass document to docPreview
+							 * check if coming from new creation or update
+							 * docPreview loads doc to location update method
+							 */
+							editFromList(doc);
+
+							// EditDoc
+							break;
+						case 1:
+							// delete doc
+							deleteFromList(item);
+							break;
+						case 2:
+							// Share Doc
+							break;
+						}
+
+						// The 'which' argument contains the index position
+						// of the selected item
+					}
+				});
 		builder.create().show();
 	}
-	
-	public void editFromList(Document doc){
+
+	public void editFromList(Document doc) {
 		Intent editDoc = new Intent(this, DocPreviewActivity.class);
 		editDoc.putExtra("ID", doc.getID());
 		startActivity(editDoc);
 	}
-	
-	public void deleteFromList(int position){
+
+	public void deleteFromList(int position) {
 		DocSave db = new DocSave(this);
 		db.open();
 		Document doc = fileArray.get(position);
-		//deletes from db
+		// deletes from db
 		db.deleteEntry(doc.getID());
-		//deletes from list
+		// deletes from list
 		fileArray.remove(position);
 		db.close();
-		//updates list
+		// updates list
 		createList();
 	}
 
@@ -128,8 +127,5 @@ public class FileListActivity extends Activity implements OnItemClickListener {
 		Intent actionOptions = new Intent(this, ActionOptionsActivity.class);
 		startActivity(actionOptions);
 	}
-	
-	
-	
 
 }

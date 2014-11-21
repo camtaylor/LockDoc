@@ -28,6 +28,8 @@ public class UploadActivity extends Activity {
 
 		Button cameraButton = (Button) findViewById(R.id.button_camera);
 		cameraButton.setOnClickListener(cameraListener);
+		Button selectImageButton = (Button) findViewById(R.id.selectImageButton);
+		selectImageButton.setOnClickListener(selectListener);
 	}
 
 	private OnClickListener cameraListener = new OnClickListener() {
@@ -37,5 +39,18 @@ public class UploadActivity extends Activity {
 			startActivity(docPreview);
 		}
 	};
+	
+
+	private OnClickListener selectListener = new OnClickListener() {
+		public void onClick(View v) {
+			chooser();
+		}
+	};
+	
+	void chooser(){
+		Intent i = new Intent(this, DocPreviewActivity.class);
+		i.putExtra("Select", true);
+		startActivity(i);
+	}
 
 }

@@ -61,6 +61,10 @@
             android:name=".SQLView"
             android:label="@string/title_activity_sqlview" >
         </activity>
+        <activity
+            android:name=".DocViewerActivity"
+            android:label="@string/title_activity_doc_viewer" >
+        </activity>
     </application>
 
 </manifest>

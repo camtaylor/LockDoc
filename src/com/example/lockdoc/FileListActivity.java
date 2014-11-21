@@ -60,7 +60,10 @@ public class FileListActivity extends Activity implements OnItemClickListener {
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
 		// TODO Open selected file for viewing
-
+		Document doc = fileArray.get(position);
+		Intent docViewer = new Intent(this, DocViewerActivity.class);
+		docViewer.putExtra("path", doc.getPath());
+		startActivity(docViewer);
 	}
 
 	public void editDialog(AdapterView<?> parent, View v, int position, long id) {

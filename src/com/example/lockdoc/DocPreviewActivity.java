@@ -51,6 +51,8 @@ public class DocPreviewActivity extends ActionBarActivity {
 		Bundle extras = getIntent().getExtras();
 		if (extras == null)
 			takePhoto();
+		else if(extras.getBoolean("Select") == true)
+			selectImage();
 		else {
 			id = extras.getLong("ID");
 			editPreview(id);
@@ -61,6 +63,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 	public void selectImage() {
 		Intent intent = new Intent("android.media.action.ACTION_GET_CONTENT");
 		intent.setType("image/*");
+		intent.setAction(Intent.ACTION_GET_CONTENT);
 		startActivityForResult(Intent.createChooser(intent, "Select File"),
 				PICK_IMAGE);
 	}
@@ -120,7 +123,22 @@ public class DocPreviewActivity extends ActionBarActivity {
 			Intent intent) {
 		super.onActivityResult(requestCode, resultCode, intent);
 
-		if (resultCode == Activity.RESULT_OK) {
+		if (requestCode == PICK_IMAGE && resultCode == RESULT_OK
+				&& null != intent) {
+			Uri selectedImage = intent.getData();
+			String[] filePath = { MediaStore.Images.Media.DATA };
+
+			Cursor cursor = getContentResolver().query(selectedImage, filePath,
+					null, null, null);
+			cursor.moveToFirst();
+
+			int columnInd = cursor.getColumnIndex(filePath[0]);
+			String picPath = cursor.getString(columnInd);
+			cursor.close();
+
+			decodeFile(picPath);
+		}
+		else if (resultCode == Activity.RESULT_OK) {
 
 			Uri selectedImage = imageUri;
 			getContentResolver().notifyChange(selectedImage, null);
@@ -152,21 +170,6 @@ public class DocPreviewActivity extends ActionBarActivity {
 			}
 		}
 
-		if (requestCode == PICK_IMAGE && resultCode == RESULT_OK
-				&& null != intent) {
-			Uri selectedImage = intent.getData();
-			String[] filePath = { MediaStore.Images.Media.DATA };
-
-			Cursor cursor = getContentResolver().query(selectedImage, filePath,
-					null, null, null);
-			cursor.moveToFirst();
-
-			int columnInd = cursor.getColumnIndex(filePath[0]);
-			String picPath = cursor.getString(columnInd);
-			cursor.close();
-
-			decodeFile(picPath);
-		}
 
 		File toDelete = new File(
 				Environment

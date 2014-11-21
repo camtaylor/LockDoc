@@ -17,6 +17,7 @@
             android:id="@+id/image_camera"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:scaleType="center"
             android:contentDescription="@string/image_cd_camera" />
  
         <TableRow

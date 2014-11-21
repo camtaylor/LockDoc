@@ -1,15 +1,16 @@
 package com.example.lockdoc;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
-public class ActionOptionsActivity extends Activity {
+public class ActionOptionsActivity extends ActionBarActivity {
 	/*
 	 * Simple activity to open either the FileListActivity or the Upload
 	 * Activity depending on a button
 	 */
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

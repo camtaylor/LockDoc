@@ -112,10 +112,8 @@ public class DocPreviewActivity extends ActionBarActivity {
 			e.printStackTrace();
 		}
 
-		if (doc.getPrivacy().equals("High"))
+		if (doc.getPrivacy().equals("Locked Up"))
 			rg.check(R.id.high_button);
-		else if (doc.getPrivacy().equals("Medium"))
-			rg.check(R.id.medium_button);
 		else
 			rg.check(R.id.low_button);
 	}
@@ -248,6 +246,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 		}
 		// starts file list after saving to database
 		Intent view = new Intent(this, FileListActivity.class);
+		view.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(view);
 	}
 

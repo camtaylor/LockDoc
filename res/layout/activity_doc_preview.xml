@@ -2,9 +2,11 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-    <TableLayout android:id="@+id/score_table"
+
+    <TableLayout
+        android:id="@+id/score_table"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent" >
 
         <TextView
             android:id="@+id/textView5"
@@ -17,106 +19,118 @@
             android:id="@+id/image_camera"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:scaleType="center"
-            android:contentDescription="@string/image_cd_camera" />
- 
+            android:contentDescription="@string/image_cd_camera"
+            android:scaleType="center" />
+
         <TableRow
             android:id="@+id/header"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="30dp" >
 
             <TextView
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:text="Name:"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
-
         </TableRow>
 
-    <EditText
-        android:id="@+id/doc_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Document Name" />
+        <EditText
+            android:id="@+id/doc_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:hint="Document Name" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="Type:"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="15dp"
+            android:text="Type:"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <EditText
-        android:id="@+id/doc_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Doc type" />
+        <EditText
+            android:id="@+id/doc_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:hint="Doc type" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="Description:"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="15dp"
+            android:text="Description:"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <EditText
-        android:id="@+id/doc_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Document Description" />
+        <EditText
+            android:id="@+id/doc_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:hint="Document Description" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="Privacy Level:"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="15dp"
+            android:text="Privacy Level:"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <RadioGroup
-        android:id="@+id/radioPrivacy"
-        android:checkedButton="@+id/low_button"
-        >
-    <RadioButton
-        android:id="@+id/high_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="High" />
-    <RadioButton
-        android:id="@+id/medium_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Medium" />
-        <RadioButton
-        android:id="@+id/low_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Low" />
-    
-    </RadioGroup>
+        <RadioGroup
+            android:id="@+id/radioPrivacy"
+            android:checkedButton="@+id/low_button" >
 
-    <Button
-        android:id="@+id/save_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:onClick="save"
-        android:text="Save" />
+            <RadioButton
+                android:id="@+id/high_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:text="Locked Up" />
 
-    <Button
-        android:id="@+id/cancel_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:onClick="upload"
-        android:text="Cancel" />
-        
+            <RadioButton
+                android:id="@+id/low_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="Shareable" />
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_weight="0.11"
+            android:onClick="save"
+            android:text="Save" />
+
+        <Button
+            android:id="@+id/cancel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:onClick="upload"
+            android:text="Cancel" />
     </TableLayout>
+
 </ScrollView>

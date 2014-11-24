@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,6 +14,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class FileListActivity extends Activity implements OnItemClickListener {
 
@@ -92,6 +94,7 @@ public class FileListActivity extends Activity implements OnItemClickListener {
 							break;
 						case 2:
 							// Share Doc
+							shareFromList(item);
 							break;
 						}
 
@@ -119,6 +122,20 @@ public class FileListActivity extends Activity implements OnItemClickListener {
 		db.close();
 		// updates list
 		createList();
+	}
+
+	public void shareFromList(int position) {
+		Document doc = fileArray.get(position);
+
+		if (doc.getPrivacy().equals("Shareable")) {
+			Intent share = new Intent(Intent.ACTION_SEND);
+			share.setType("image/jpeg");
+			share.putExtra(Intent.EXTRA_STREAM, Uri.parse(doc.getPath()));
+			startActivity(Intent.createChooser(share, "Share Image"));
+		}
+		else{
+			Toast.makeText(getApplicationContext(), "Locked up items are not shareable", Toast.LENGTH_LONG).show();
+		}
 	}
 
 	@Override

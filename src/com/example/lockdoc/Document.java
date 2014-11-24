@@ -84,12 +84,10 @@ public class Document {
 
 	public void setPrivacy(String privacy) {
 		//only 3 options for privacy
-		if(privacy.equals("High"))
-			this.privacy = privacy;
-		else if(privacy.equals("Medium"))
+		if(privacy.equals("Locked Up"))
 			this.privacy = privacy;
 		else
-			this.privacy = "Low";
+			this.privacy = "Shareable";
 	}
 
 	public String getPath() {

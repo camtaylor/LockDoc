@@ -1,51 +1,48 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.lockdoc.ActionOptionsActivity" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/addFileButton"
-        android:layout_below="@+id/addFileButton"
-        android:text="Add File"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/viewFilesButton"
-        android:layout_below="@+id/viewFilesButton"
-        android:text="View Files"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
     <ImageButton
         android:id="@+id/addFileButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="74dp"
-        android:src="@drawable/file_add"
-        android:onClick="capture" />
+        android:layout_gravity="center"
+        android:layout_marginTop="60dp"
+        android:onClick="capture"
+        android:src="@drawable/file_add" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:text="Add"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ImageButton
         android:id="@+id/viewFilesButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/addFileButton"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="66dp"
-        android:src="@drawable/small_folder_icon"
-        android:onClick="fileList" />
+        android:layout_gravity="center"
+        android:layout_marginTop="60dp"
+        android:onClick="fileList"
+        android:src="@drawable/small_folder_icon" />
 
-   
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="View"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
-</RelativeLayout>
+</LinearLayout>

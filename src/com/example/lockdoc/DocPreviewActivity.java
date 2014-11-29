@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.util.Random;
 
 import android.app.Activity;
@@ -50,11 +51,11 @@ public class DocPreviewActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_doc_preview);
 		setTitle("Preview");
 		Bundle extras = getIntent().getExtras();
-		if (extras == null)
+		if (extras == null){
 			takePhoto();
+		}
 		else if (extras.getBoolean("Select") == true) {
 			selectImage();
-			setTitle(extras.getString("name"));
 		} else {
 			id = extras.getLong("ID");
 			editPreview(id);
@@ -68,6 +69,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 		intent.setAction(Intent.ACTION_GET_CONTENT);
 		startActivityForResult(Intent.createChooser(intent, "Select File"),
 				PICK_IMAGE);
+		
 	}
 
 	private void takePhoto() {
@@ -121,22 +123,22 @@ public class DocPreviewActivity extends ActionBarActivity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode,
 			Intent intent) {
-		super.onActivityResult(requestCode, resultCode, intent);
-
+		super.onActivityResult(requestCode, resultCode, intent);	
+		String filePath = null;
 		if (requestCode == PICK_IMAGE && resultCode == RESULT_OK
 				&& null != intent) {
 			Uri selectedImage = intent.getData();
-			String[] filePath = { MediaStore.Images.Media.DATA };
-
-			Cursor cursor = getContentResolver().query(selectedImage, filePath,
-					null, null, null);
-			cursor.moveToFirst();
-
-			int columnInd = cursor.getColumnIndex(filePath[0]);
-			String picPath = cursor.getString(columnInd);
-			cursor.close();
-
-			decodeFile(picPath);
+			String picPath = getPath(selectedImage);
+			if(picPath !=null){
+				filePath = picPath;
+				Bitmap myImage = BitmapFactory.decodeFile(picPath);
+				image.setImageBitmap(myImage);
+			}
+			else
+				Toast.makeText(getApplicationContext(), "Couldn't Upload Image NULL Error", Toast.LENGTH_LONG).show();
+			
+			
+			
 		} else if (resultCode == Activity.RESULT_OK) {
 
 			Uri selectedImage = imageUri;
@@ -174,7 +176,23 @@ public class DocPreviewActivity extends ActionBarActivity {
 						.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
 				"lockdoctemp.jpg");
 		toDelete.delete();
+	
 	}
+	
+	// Get Path from URI
+		public String getPath(Uri uri){
+			String[] filePath = { MediaStore.Images.Media.DATA };
+			Cursor cursor = getContentResolver().query(uri, filePath,
+						null, null, null);
+			if(cursor!=null){
+				int columnInd = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+				cursor.moveToFirst();
+				return cursor.getString(columnInd);
+			}
+			else
+				return null;
+			
+		}
 
 	public void decodeFile(String path) {
 		BitmapFactory.Options opt = new BitmapFactory.Options();
@@ -198,7 +216,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 		opt2.inSampleSize = scale;
 		bitmap = BitmapFactory.decodeFile(path, opt2);
 
-		image.setImageBitmap(bitmap);
+		//image.setImageBitmap(bitmap);
 	}
 
 	public void upload(View v) {

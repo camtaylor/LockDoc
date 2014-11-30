@@ -2,12 +2,21 @@ package com.example.lockdoc;
 
 import java.util.ArrayList;
 
+import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.SearchView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -22,14 +31,17 @@ public class FileListActivity extends Activity implements OnItemClickListener {
 	// holds our file data
 	ArrayList<Document> fileArray = new ArrayList<Document>();
 	ListView fileView;
+	MenuItem menuItem;
 
+	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
 		setTitle("Your Files");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_file_list);
-
+		
+		ActionBar actionBar = getActionBar();
 		// populate list from database
 		DocSave db = new DocSave(this);
 		db.open();
@@ -38,6 +50,30 @@ public class FileListActivity extends Activity implements OnItemClickListener {
 
 		createList();
 
+	}
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu){
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.file_list,  menu);
+		MenuItem searchItem = menu.findItem(R.id.action_search);
+		SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+	    return super.onCreateOptionsMenu(menu);
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item){
+		switch(item.getItemId()){
+		case R.id.action_search:
+			Toast.makeText(this, "Search Selected", Toast.LENGTH_LONG).show();
+			//TODO Create Search
+			break;
+		case R.id.action_settings:
+			Toast.makeText(this, "Settings Selected", Toast.LENGTH_LONG).show();
+			//TODO Bring up Settings Section
+			break;
+		default:
+			break;	
+		}
+		return true;
 	}
 
 	public void createList() {

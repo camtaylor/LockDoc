@@ -28,6 +28,9 @@
         <activity
             android:name=".FileListActivity"
             android:label="@string/title_activity_file_list" >
+            <meta-data
+        android:name="android.app.default_searchable"
+        android:value=".SearchResultsActivity" />
         </activity>
         <activity
             android:name=".FileAdapter"
@@ -35,7 +38,8 @@
         </activity>
         <activity
             android:name=".ActionOptionsActivity"
-            android:label="@string/title_activity_action_options" >
+            android:label="@string/title_activity_action_options"
+            android:theme="@style/Theme.AppCompat.Light" >
         </activity>
         <activity
             android:name=".UploadActivity"
@@ -65,6 +69,7 @@
             android:name=".DocViewerActivity"
             android:label="@string/title_activity_doc_viewer" >
         </activity>
+        
     </application>
 
 </manifest>

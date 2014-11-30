@@ -35,7 +35,7 @@ public class CreateAccountActivity extends ActionBarActivity {
 
 		// test input for reliability
 		if (createString.equals(confirmString)) {
-			if (createPin.length() > 2) {
+			if (createPin.length() > 2 && createPin.length() < 11) {
 				// writes pin to shared preferences
 				PreferenceManager
 						.getDefaultSharedPreferences(getApplicationContext())
@@ -44,7 +44,9 @@ public class CreateAccountActivity extends ActionBarActivity {
 				Intent login = new Intent(this, LoginActivity.class);
 				startActivity(login);
 			} else {
-
+				Toast.makeText(getApplicationContext(),
+						"Pin must be 3 to 10 characters long",
+						Toast.LENGTH_LONG).show();
 			}
 
 		} else {

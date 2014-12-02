@@ -35,7 +35,8 @@
         </activity>
         <activity
             android:name=".ActionOptionsActivity"
-            android:label="@string/title_activity_action_options" >
+            android:label="@string/title_activity_action_options"
+            android:theme="@style/Theme.AppCompat.Light" >
         </activity>
         <activity
             android:name=".UploadActivity"
@@ -64,6 +65,16 @@
         <activity
             android:name=".DocViewerActivity"
             android:label="@string/title_activity_doc_viewer" >
+        </activity>
+ 
+        <activity
+            android:name=".AbsolutePathActivity"
+            android:label="@string/title_activity_absolute_path" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+ 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

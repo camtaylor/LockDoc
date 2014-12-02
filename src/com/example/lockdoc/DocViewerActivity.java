@@ -16,6 +16,7 @@ public class DocViewerActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_doc_viewer);
 		Bundle extras = getIntent().getExtras();
+		setTitle(extras.getString("name"));
 		String path = extras.getString("path");
 		setImage(path);
 

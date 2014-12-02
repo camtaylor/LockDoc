@@ -39,7 +39,7 @@ public class UploadActivity extends Activity {
 	};
 
 	void chooser() {
-		Intent i = new Intent(this, DocPreviewActivity.class);
+		Intent i = new Intent(this, AbsolutePathActivity.class);
 		i.putExtra("Select", true);
 		startActivity(i);
 	}

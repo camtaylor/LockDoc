@@ -25,6 +25,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+@SuppressLint("NewApi")
 public class FileListActivity extends Activity implements OnItemClickListener {
 
 	ArrayAdapter<Document> fileAdapter;
@@ -55,9 +56,18 @@ public class FileListActivity extends Activity implements OnItemClickListener {
 	public boolean onCreateOptionsMenu(Menu menu){
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.file_list,  menu);
-		MenuItem searchItem = menu.findItem(R.id.action_search);
-		SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-	    return super.onCreateOptionsMenu(menu);
+		
+		//SearchView
+		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView.setSearchableInfo(searchManager
+                .getSearchableInfo(getComponentName()));
+ 
+        return super.onCreateOptionsMenu(menu);
+        
+//		MenuItem searchItem = menu.findItem(R.id.action_search);
+//		SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+//	    return super.onCreateOptionsMenu(menu);
 	}
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item){

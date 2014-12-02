@@ -128,21 +128,22 @@ public class DocPreviewActivity extends ActionBarActivity {
 			Intent intent) {
 		super.onActivityResult(requestCode, resultCode, intent);	
 		String filePath = null;
-		if (requestCode == PICK_IMAGE && resultCode == RESULT_OK
-				&& null != intent) {
-			Uri selectedImage = intent.getData();
-			String picPath = getPath(selectedImage);
-			if(picPath !=null){
-				filePath = picPath;
-				Bitmap myImage = BitmapFactory.decodeFile(picPath);
-				image.setImageBitmap(myImage);
-			}
-			else
-				Toast.makeText(getApplicationContext(), "Couldn't Upload Image NULL Error", Toast.LENGTH_LONG).show();
+//		if (requestCode == PICK_IMAGE && resultCode == RESULT_OK
+//				&& null != intent) {
+//			Uri selectedImage = intent.getData();
+//			String picPath = getPath(selectedImage);
+//			if(picPath !=null){
+//				filePath = picPath;
+//				Bitmap myImage = BitmapFactory.decodeFile(picPath);
+//				image.setImageBitmap(myImage);
+//			}
+//			else
+//				Toast.makeText(getApplicationContext(), "Couldn't Upload Image NULL Error", Toast.LENGTH_LONG).show();
+//			
+//			
 			
-			
-			
-		} else if (resultCode == Activity.RESULT_OK) {
+//		}
+	if (resultCode == Activity.RESULT_OK) {
 
 			Uri selectedImage = imageUri;
 			getContentResolver().notifyChange(selectedImage, null);

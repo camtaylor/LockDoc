@@ -98,8 +98,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_doc_preview);
 		EditText name = (EditText) findViewById(R.id.doc_name);
 		name.setText(doc.getFilename());
-		EditText type = (EditText) findViewById(R.id.doc_type);
-		type.setText(doc.getDocType());
+		RadioGroup tg = (RadioGroup) findViewById(R.id.radioType);
 		EditText description = (EditText) findViewById(R.id.doc_description);
 		description.setText(doc.getDescription());
 		RadioGroup rg = (RadioGroup) findViewById(R.id.radioPrivacy);
@@ -118,6 +117,10 @@ public class DocPreviewActivity extends ActionBarActivity {
 			rg.check(R.id.high_button);
 		else
 			rg.check(R.id.low_button);
+		if (doc.getDocType().equals("Business"))
+			tg.check(R.id.business_button);
+		else
+			tg.check(R.id.personal_button);
 	}
 
 	@Override
@@ -227,8 +230,10 @@ public class DocPreviewActivity extends ActionBarActivity {
 	public void save(View v) {
 		EditText docName = (EditText) findViewById(R.id.doc_name);
 		String name = docName.getText().toString();
-		EditText docType = (EditText) findViewById(R.id.doc_type);
-		String type = docType.getText().toString();
+		RadioGroup tg = (RadioGroup) findViewById(R.id.radioType);
+		RadioButton typeButton = (RadioButton) findViewById(tg
+				.getCheckedRadioButtonId());
+		String type = typeButton.getText().toString();
 		EditText docDescription = (EditText) findViewById(R.id.doc_description);
 		String description = docDescription.getText().toString();
 		Document doc = new Document(name, type);
@@ -238,6 +243,9 @@ public class DocPreviewActivity extends ActionBarActivity {
 		RadioButton privacyButton = (RadioButton) findViewById(rg
 				.getCheckedRadioButtonId());
 		String privacy = privacyButton.getText().toString();
+		
+		
+		
 		boolean didItWork = true;
 
 		// check if it is a new doc or old one

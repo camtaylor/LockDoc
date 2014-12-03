@@ -67,6 +67,28 @@ public class DocPreviewActivity extends ActionBarActivity {
 		Bitmap myBit = BitmapFactory.decodeFile(path);
 		ImageView myImageView = (ImageView)findViewById(R.id.image_camera);
 		myImageView.setImageBitmap(myBit);
+		
+		ContextWrapper cw = new ContextWrapper(getApplicationContext());
+		File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
+
+		Random randomInt = new Random();
+		int tempInt = randomInt.nextInt(10000);
+		File mypath = new File(directory, Integer.toString(tempInt)
+				+ ".jpeg");
+		internalPath = mypath.getAbsolutePath();
+		FileOutputStream fos = null;
+		try {
+			fos = new FileOutputStream(mypath);
+			// sets image view to image
+			myBit.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+			fos.close();
+			// load bitmap from internal storage
+			Bitmap b = BitmapFactory.decodeStream(new FileInputStream(
+					mypath));
+			myImageView.setImageBitmap(b);
+		} catch (Exception e) {
+			Log.e(logtag, e.toString());
+		}
 	}
 
 	private void takePhoto() {

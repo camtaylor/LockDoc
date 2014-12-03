@@ -63,7 +63,10 @@ public class DocPreviewActivity extends ActionBarActivity {
 	}
 
 	public void selectImage(String path) {
-		Toast.makeText(getApplicationContext(), path, Toast.LENGTH_LONG).show();
+		setContentView(R.layout.activity_doc_preview);
+		Bitmap myBit = BitmapFactory.decodeFile(path);
+		ImageView myImageView = (ImageView)findViewById(R.id.image_camera);
+		myImageView.setImageBitmap(myBit);
 	}
 
 	private void takePhoto() {

@@ -51,11 +51,10 @@ public class DocPreviewActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_doc_preview);
 		setTitle("Preview");
 		Bundle extras = getIntent().getExtras();
-		if (extras == null){
+		if (extras == null) {
 			takePhoto();
-		}
-		else if (extras.getBoolean("Select") == true) {
-			selectImage();
+		} else if (extras.getBoolean("Select") == true) {
+			selectImage(extras.getString("Path"));
 		} else {
 			id = extras.getLong("ID");
 			editPreview(id);
@@ -63,13 +62,8 @@ public class DocPreviewActivity extends ActionBarActivity {
 		}
 	}
 
-	public void selectImage() {
-		Intent intent = new Intent("android.media.action.ACTION_GET_CONTENT");
-		intent.setType("image/*");
-		intent.setAction(Intent.ACTION_GET_CONTENT);
-		startActivityForResult(Intent.createChooser(intent, "Select File"),
-				PICK_IMAGE);
-		
+	public void selectImage(String path) {
+		Toast.makeText(getApplicationContext(), path, Toast.LENGTH_LONG).show();
 	}
 
 	private void takePhoto() {
@@ -126,10 +120,10 @@ public class DocPreviewActivity extends ActionBarActivity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode,
 			Intent intent) {
-		super.onActivityResult(requestCode, resultCode, intent);	
+		super.onActivityResult(requestCode, resultCode, intent);
 		String filePath = null;
 
-	if (resultCode == Activity.RESULT_OK) {
+		if (resultCode == Activity.RESULT_OK) {
 
 			Uri selectedImage = imageUri;
 			getContentResolver().notifyChange(selectedImage, null);
@@ -166,23 +160,23 @@ public class DocPreviewActivity extends ActionBarActivity {
 						.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
 				"lockdoctemp.jpg");
 		toDelete.delete();
-	
+
 	}
-	
+
 	// Get Path from URI
-		public String getPath(Uri uri){
-			String[] filePath = { MediaStore.Images.Media.DATA };
-			Cursor cursor = getContentResolver().query(uri, filePath,
-						null, null, null);
-			if(cursor!=null){
-				int columnInd = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-				cursor.moveToFirst();
-				return cursor.getString(columnInd);
-			}
-			else
-				return null;
-			
-		}
+	public String getPath(Uri uri) {
+		String[] filePath = { MediaStore.Images.Media.DATA };
+		Cursor cursor = getContentResolver().query(uri, filePath, null, null,
+				null);
+		if (cursor != null) {
+			int columnInd = cursor
+					.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+			cursor.moveToFirst();
+			return cursor.getString(columnInd);
+		} else
+			return null;
+
+	}
 
 	public void decodeFile(String path) {
 		BitmapFactory.Options opt = new BitmapFactory.Options();
@@ -206,7 +200,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 		opt2.inSampleSize = scale;
 		bitmap = BitmapFactory.decodeFile(path, opt2);
 
-		//image.setImageBitmap(bitmap);
+		// image.setImageBitmap(bitmap);
 	}
 
 	public void upload(View v) {
@@ -230,9 +224,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 		RadioButton privacyButton = (RadioButton) findViewById(rg
 				.getCheckedRadioButtonId());
 		String privacy = privacyButton.getText().toString();
-		
-		
-		
+
 		boolean didItWork = true;
 
 		// check if it is a new doc or old one
@@ -259,7 +251,8 @@ public class DocPreviewActivity extends ActionBarActivity {
 		}
 		// starts file list after saving to database
 		Intent view = new Intent(this, FileListActivity.class);
-		view.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+		view.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+				| Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(view);
 	}
 

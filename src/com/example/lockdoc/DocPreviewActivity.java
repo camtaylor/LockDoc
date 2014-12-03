@@ -124,7 +124,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 		String filePath = null;
 		
 		if (resultCode == Activity.RESULT_OK) {
-			getImage();
+			getImage(imageUri);
 		}
 		File toDelete = new File(
 				Environment
@@ -134,7 +134,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 
 	}
 	
-	public void getImage(){
+	public void getImage(Uri imageUri){
 		Uri selectedImage = imageUri;
 		getContentResolver().notifyChange(selectedImage, null);
 		ImageView imageView = (ImageView) findViewById(R.id.image_camera);

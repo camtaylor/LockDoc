@@ -29,8 +29,8 @@
             android:name=".FileListActivity"
             android:label="@string/title_activity_file_list" >
             <meta-data
-        android:name="android.app.default_searchable"
-        android:value=".SearchResultsActivity" />
+                android:name="android.app.default_searchable"
+                android:value=".SearchResultsActivity" />
         </activity>
         <activity
             android:name=".FileAdapter"
@@ -69,7 +69,14 @@
             android:name=".DocViewerActivity"
             android:label="@string/title_activity_doc_viewer" >
         </activity>
-        
+        <activity
+            android:name=".AbsolutePathActivity"
+            android:label="@string/title_activity_absolute_path" >
+            <intent-filter>
+            	<action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

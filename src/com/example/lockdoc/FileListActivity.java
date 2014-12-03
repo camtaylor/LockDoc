@@ -183,14 +183,13 @@ public class FileListActivity extends Activity implements OnItemClickListener {
 		if (doc.getPrivacy().equals("Shareable")) {
 			File inFile = new File(doc.getPath());
 			File outFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
-					"lockdoctemp.jpg");
+					"lockdocshare.jpg");
 			copyFile(inFile, outFile);
-			
-			
+		
 			
 			Intent share = new Intent(Intent.ACTION_SEND);
 			share.setType("image/jpeg");
-			share.putExtra(Intent.EXTRA_STREAM, outFile);
+			share.putExtra(Intent.EXTRA_STREAM, outFile.getPath());
 			
 			startActivity(Intent.createChooser(share, "Share Image"));
 		}

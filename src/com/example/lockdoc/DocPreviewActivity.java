@@ -122,39 +122,10 @@ public class DocPreviewActivity extends ActionBarActivity {
 			Intent intent) {
 		super.onActivityResult(requestCode, resultCode, intent);
 		String filePath = null;
-
+		
 		if (resultCode == Activity.RESULT_OK) {
-
-			Uri selectedImage = imageUri;
-			getContentResolver().notifyChange(selectedImage, null);
-			ImageView imageView = (ImageView) findViewById(R.id.image_camera);
-			ContentResolver cr = getContentResolver();
-			// Bitmap bitmap;
-
-			ContextWrapper cw = new ContextWrapper(getApplicationContext());
-			File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
-
-			Random randomInt = new Random();
-			int tempInt = randomInt.nextInt(10000);
-			File mypath = new File(directory, Integer.toString(tempInt)
-					+ ".jpeg");
-			internalPath = mypath.getAbsolutePath();
-			FileOutputStream fos = null;
-			try {
-				fos = new FileOutputStream(mypath);
-				// sets image view to image
-				bitmap = MediaStore.Images.Media.getBitmap(cr, selectedImage);
-				bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
-				fos.close();
-				// load bitmap from internal storage
-				Bitmap b = BitmapFactory.decodeStream(new FileInputStream(
-						mypath));
-				imageView.setImageBitmap(b);
-			} catch (Exception e) {
-				Log.e(logtag, e.toString());
-			}
+			getImage();
 		}
-
 		File toDelete = new File(
 				Environment
 						.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
@@ -162,6 +133,37 @@ public class DocPreviewActivity extends ActionBarActivity {
 		toDelete.delete();
 
 	}
+	
+	public void getImage(){
+		Uri selectedImage = imageUri;
+		getContentResolver().notifyChange(selectedImage, null);
+		ImageView imageView = (ImageView) findViewById(R.id.image_camera);
+		ContentResolver cr = getContentResolver();
+
+		ContextWrapper cw = new ContextWrapper(getApplicationContext());
+		File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
+
+		Random randomInt = new Random();
+		int tempInt = randomInt.nextInt(10000);
+		File mypath = new File(directory, Integer.toString(tempInt)
+				+ ".jpeg");
+		internalPath = mypath.getAbsolutePath();
+		FileOutputStream fos = null;
+		try {
+			fos = new FileOutputStream(mypath);
+			// sets image view to image
+			bitmap = MediaStore.Images.Media.getBitmap(cr, selectedImage);
+			bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+			fos.close();
+			// load bitmap from internal storage
+			Bitmap b = BitmapFactory.decodeStream(new FileInputStream(
+					mypath));
+			imageView.setImageBitmap(b);
+		} catch (Exception e) {
+			Log.e(logtag, e.toString());
+		}
+	}
+	
 
 	// Get Path from URI
 	public String getPath(Uri uri) {

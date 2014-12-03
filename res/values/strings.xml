@@ -18,5 +18,6 @@
     <string name="title_activity_sqlview">SQLView</string>
     <string name="title_activity_doc_viewer">DocViewer</string>
     <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_absolute_path">AbsolutePathActivity</string>
 
 </resources>

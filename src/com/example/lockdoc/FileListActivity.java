@@ -1,5 +1,10 @@
 package com.example.lockdoc;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
@@ -12,7 +17,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.view.MenuItemCompat;
+import android.os.Environment;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -64,10 +69,7 @@ public class FileListActivity extends Activity implements OnItemClickListener {
                 .getSearchableInfo(getComponentName()));
  
         return super.onCreateOptionsMenu(menu);
-        
-//		MenuItem searchItem = menu.findItem(R.id.action_search);
-//		SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-//	    return super.onCreateOptionsMenu(menu);
+
 	}
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item){
@@ -140,7 +142,12 @@ public class FileListActivity extends Activity implements OnItemClickListener {
 							break;
 						case 2:
 							// Share Doc
-							shareFromList(item);
+							try {
+								shareFromList(item);
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 							break;
 						}
 
@@ -170,18 +177,43 @@ public class FileListActivity extends Activity implements OnItemClickListener {
 		createList();
 	}
 
-	public void shareFromList(int position) {
+	public void shareFromList(int position) throws IOException {
 		Document doc = fileArray.get(position);
 
 		if (doc.getPrivacy().equals("Shareable")) {
+			File inFile = new File(doc.getPath());
+			File outFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+					"lockdoctemp.jpg");
+			copyFile(inFile, outFile);
+			
+			
+			
 			Intent share = new Intent(Intent.ACTION_SEND);
 			share.setType("image/jpeg");
-			share.putExtra(Intent.EXTRA_STREAM, Uri.parse(doc.getPath()));
+			share.putExtra(Intent.EXTRA_STREAM, outFile);
+			
 			startActivity(Intent.createChooser(share, "Share Image"));
 		}
 		else{
 			Toast.makeText(getApplicationContext(), "Locked up items are not shareable", Toast.LENGTH_LONG).show();
 		}
+	}
+	
+	public void copyFile(File src, File dst) throws IOException
+	{
+	    FileChannel inChannel = new FileInputStream(src).getChannel();
+	    FileChannel outChannel = new FileOutputStream(dst).getChannel();
+	    try
+	    {
+	        inChannel.transferTo(0, inChannel.size(), outChannel);
+	    }
+	    finally
+	    {
+	        if (inChannel != null)
+	            inChannel.close();
+	        if (outChannel != null)
+	            outChannel.close();
+	    }
 	}
 
 	@Override

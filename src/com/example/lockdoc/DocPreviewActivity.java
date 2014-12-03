@@ -5,7 +5,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.InputStream;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
 import java.util.Random;
 
 import android.app.Activity;

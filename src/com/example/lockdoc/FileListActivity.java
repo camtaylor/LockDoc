@@ -46,7 +46,7 @@ public class FileListActivity extends Activity implements OnItemClickListener {
 		setTitle("Your Files");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_file_list);
-		
+
 		ActionBar actionBar = getActionBar();
 		// populate list from database
 		DocSave db = new DocSave(this);
@@ -57,33 +57,36 @@ public class FileListActivity extends Activity implements OnItemClickListener {
 		createList();
 
 	}
+
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu){
+	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.file_list,  menu);
-		
-		//SearchView
+		inflater.inflate(R.menu.file_list, menu);
+
+		// SearchView
 		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-        searchView.setSearchableInfo(searchManager
-                .getSearchableInfo(getComponentName()));
- 
-        return super.onCreateOptionsMenu(menu);
+		SearchView searchView = (SearchView) menu.findItem(R.id.action_search)
+				.getActionView();
+		searchView.setSearchableInfo(searchManager
+				.getSearchableInfo(getComponentName()));
+
+		return super.onCreateOptionsMenu(menu);
 
 	}
+
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item){
-		switch(item.getItemId()){
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
 		case R.id.action_search:
 			Toast.makeText(this, "Search Selected", Toast.LENGTH_LONG).show();
-			//TODO Create Search
+			// TODO Create Search
 			break;
 		case R.id.action_settings:
 			Toast.makeText(this, "Settings Selected", Toast.LENGTH_LONG).show();
-			//TODO Bring up Settings Section
+			// TODO Bring up Settings Section
 			break;
 		default:
-			break;	
+			break;
 		}
 		return true;
 	}
@@ -182,37 +185,36 @@ public class FileListActivity extends Activity implements OnItemClickListener {
 
 		if (doc.getPrivacy().equals("Shareable")) {
 			File inFile = new File(doc.getPath());
-			File outFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+			File outFile = new File(
+					Environment
+							.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
 					"lockdocshare.jpg");
 			copyFile(inFile, outFile);
-		
-			
+			Uri uri = Uri.fromFile(outFile);
+
 			Intent share = new Intent(Intent.ACTION_SEND);
 			share.setType("image/jpeg");
-			share.putExtra(Intent.EXTRA_STREAM, outFile.getPath());
-			
+			share.putExtra(Intent.EXTRA_STREAM,
+					uri);
 			startActivity(Intent.createChooser(share, "Share Image"));
-		}
-		else{
-			Toast.makeText(getApplicationContext(), "Locked up items are not shareable", Toast.LENGTH_LONG).show();
+		} else {
+			Toast.makeText(getApplicationContext(),
+					"Locked up items are not shareable", Toast.LENGTH_LONG)
+					.show();
 		}
 	}
-	
-	public void copyFile(File src, File dst) throws IOException
-	{
-	    FileChannel inChannel = new FileInputStream(src).getChannel();
-	    FileChannel outChannel = new FileOutputStream(dst).getChannel();
-	    try
-	    {
-	        inChannel.transferTo(0, inChannel.size(), outChannel);
-	    }
-	    finally
-	    {
-	        if (inChannel != null)
-	            inChannel.close();
-	        if (outChannel != null)
-	            outChannel.close();
-	    }
+
+	public void copyFile(File src, File dst) throws IOException {
+		FileChannel inChannel = new FileInputStream(src).getChannel();
+		FileChannel outChannel = new FileOutputStream(dst).getChannel();
+		try {
+			inChannel.transferTo(0, inChannel.size(), outChannel);
+		} finally {
+			if (inChannel != null)
+				inChannel.close();
+			if (outChannel != null)
+				outChannel.close();
+		}
 	}
 
 	@Override

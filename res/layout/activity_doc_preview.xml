@@ -6,7 +6,8 @@
     <TableLayout
         android:id="@+id/score_table"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+        android:layout_height="fill_parent"
+        android:background="#F0F0F0" >
 
         <TextView
             android:id="@+id/textView5"
@@ -76,7 +77,7 @@
 
         <RadioGroup
             android:id="@+id/radioType"
-            android:checkedButton="@+id/low_button" >
+            android:checkedButton="@+id/personal_button" >
 
             <RadioButton
                 android:id="@+id/personal_button"

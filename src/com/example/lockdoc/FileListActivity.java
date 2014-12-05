@@ -85,6 +85,9 @@ public class FileListActivity extends Activity implements OnItemClickListener {
 			Toast.makeText(this, "Settings Selected", Toast.LENGTH_LONG).show();
 			// TODO Bring up Settings Section
 			break;
+		case R.id.action_capture:
+			Intent add = new Intent(this, UploadActivity.class);
+			startActivity(add);
 		default:
 			break;
 		}

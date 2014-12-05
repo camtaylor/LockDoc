@@ -14,6 +14,7 @@
         android:title="@string/action_search"
         android:showAsAction="ifRoom" 
         android:actionViewClass="android.support.v7.widget.SearchView"/>
+    <item android:id="@+id/action_capture" android:icon="@drawable/file_add" android:showAsAction="ifRoom" android:title="@string/add_file"></item>
     
     
 

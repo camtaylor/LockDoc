@@ -34,7 +34,7 @@ public class LoginActivity extends Activity {
 		if (savedPin != null) {
 			// User has an account
 			if (attempted.equals(savedPin)) {
-				Intent login = new Intent(this, ActionOptionsActivity.class);
+				Intent login = new Intent(this, FileListActivity.class);
 				startActivity(login);
 			} else if (attempted.length() > 0){
 				Toast.makeText(getApplicationContext(), "Incorrect Pin",

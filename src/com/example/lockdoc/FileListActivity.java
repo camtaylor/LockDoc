@@ -52,7 +52,7 @@ public class FileListActivity extends Activity implements OnItemClickListener,
 		setTitle("Your Files");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_file_list);
-
+		
 		ActionBar actionBar = getActionBar();
 		// populate list from database
 		DocSave db = new DocSave(this);
@@ -60,6 +60,13 @@ public class FileListActivity extends Activity implements OnItemClickListener,
 		fileArray = db.getDocumentList();
 		db.close();
 		createList(fileArray);
+		
+		if(fileArray.size() == 0){
+			Intent intent = new Intent(this, ActionOptionsActivity.class);
+			startActivity(intent);
+		}
+
+			
 
 	}
 

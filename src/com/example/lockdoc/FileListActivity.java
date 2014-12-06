@@ -18,7 +18,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -28,10 +27,13 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
+import android.widget.SearchView.OnQueryTextListener;
 import android.widget.Toast;
+//import android.support.v7.widget.SearchView;
 
 @SuppressLint("NewApi")
-public class FileListActivity extends Activity implements OnItemClickListener {
+public class FileListActivity extends Activity implements OnItemClickListener, OnQueryTextListener {
 
 	ArrayAdapter<Document> fileAdapter;
 	// holds our file data
@@ -56,6 +58,7 @@ public class FileListActivity extends Activity implements OnItemClickListener {
 
 		createList();
 
+
 	}
 
 	@Override
@@ -67,9 +70,11 @@ public class FileListActivity extends Activity implements OnItemClickListener {
 		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 		SearchView searchView = (SearchView) menu.findItem(R.id.action_search)
 				.getActionView();
-		searchView.setSearchableInfo(searchManager
-				.getSearchableInfo(getComponentName()));
-
+		//searchView.setSearchableInfo(searchManager
+				//.getSearchableInfo(getComponentName()));
+		
+		searchView.setOnQueryTextListener(this);
+		
 		return super.onCreateOptionsMenu(menu);
 
 	}
@@ -225,6 +230,18 @@ public class FileListActivity extends Activity implements OnItemClickListener {
 		super.onBackPressed();
 		Intent actionOptions = new Intent(this, ActionOptionsActivity.class);
 		startActivity(actionOptions);
+	}
+
+	@Override
+	public boolean onQueryTextSubmit(String query) {
+		Toast.makeText(this, query, Toast.LENGTH_SHORT).show();
+        return true;
+	}
+
+	@Override
+	public boolean onQueryTextChange(String newText) {
+		Toast.makeText(this, newText, Toast.LENGTH_SHORT).show();
+        return true;
 	}
 
 }

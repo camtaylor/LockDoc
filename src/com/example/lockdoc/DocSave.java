@@ -104,6 +104,32 @@ public class DocSave {
 		database.update(TABLE_DOCS, cvEdit, COLUMN_ID + "=" + ID, null);
 	}
 
+	public Document getDocumentWithString(String input){
+		Document doc = null;
+		String[] columns = new String[] { COLUMN_ID, COLUMN_NAME, COLUMN_TYPE,
+				COLUMN_DATE, COLUMN_DESCRIPTION, COLUMN_PRIVACY,
+				COLUMN_FILENAME };
+		Cursor c = database.query(TABLE_DOCS, columns, COLUMN_NAME + "=" + input,
+				null, null, null, null, null); // Search for name of file
+
+		int iRow = c.getColumnIndex(COLUMN_ID);
+		int iName = c.getColumnIndex(COLUMN_NAME);
+		int iType = c.getColumnIndex(COLUMN_TYPE);
+		int iDate = c.getColumnIndex(COLUMN_DATE);
+		int iDescription = c.getColumnIndex(COLUMN_DESCRIPTION);
+		int iPrivacy = c.getColumnIndex(COLUMN_PRIVACY);
+		int iFilename = c.getColumnIndex(COLUMN_FILENAME);
+		
+		if (c != null) {
+			c.moveToFirst();
+			doc = new Document(Long.parseLong(c.getString(iRow)),
+					c.getString(iName), c.getString(iType), c.getString(iDate),
+					c.getString(iDescription), c.getString(iPrivacy),
+					c.getString(iFilename));
+		}
+
+		return doc;
+	}
 	public Document getDocumentAtCursor(long ID) {
 
 		Document doc = null;

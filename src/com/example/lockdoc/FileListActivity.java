@@ -30,16 +30,20 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.SearchView.OnQueryTextListener;
 import android.widget.Toast;
+
 //import android.support.v7.widget.SearchView;
 
 @SuppressLint("NewApi")
-public class FileListActivity extends Activity implements OnItemClickListener, OnQueryTextListener {
+public class FileListActivity extends Activity implements OnItemClickListener,
+		OnQueryTextListener {
 
 	ArrayAdapter<Document> fileAdapter;
 	// holds our file data
+	ArrayList<Document> searchArray = new ArrayList<Document>();
 	ArrayList<Document> fileArray = new ArrayList<Document>();
 	ListView fileView;
 	MenuItem menuItem;
+	String searchInput = "";
 
 	@SuppressLint("NewApi")
 	@Override
@@ -55,9 +59,7 @@ public class FileListActivity extends Activity implements OnItemClickListener, O
 		db.open();
 		fileArray = db.getDocumentList();
 		db.close();
-
-		createList();
-
+		createList(fileArray);
 
 	}
 
@@ -70,11 +72,7 @@ public class FileListActivity extends Activity implements OnItemClickListener, O
 		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 		SearchView searchView = (SearchView) menu.findItem(R.id.action_search)
 				.getActionView();
-		//searchView.setSearchableInfo(searchManager
-				//.getSearchableInfo(getComponentName()));
-		
 		searchView.setOnQueryTextListener(this);
-		
 		return super.onCreateOptionsMenu(menu);
 
 	}
@@ -99,9 +97,9 @@ public class FileListActivity extends Activity implements OnItemClickListener, O
 		return true;
 	}
 
-	public void createList() {
+	public void createList(ArrayList<Document> fileList) {
 		// creates the list that holds the files.
-		fileAdapter = new FileAdapter(this, fileArray);
+		fileAdapter = new FileAdapter(this, fileList);
 		fileView = (ListView) findViewById(R.id.file_view);
 		fileView.setAdapter(fileAdapter);
 		fileView.setOnItemClickListener(this);
@@ -120,11 +118,17 @@ public class FileListActivity extends Activity implements OnItemClickListener, O
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
 		// TODO Open selected file for viewing
-		Document doc = fileArray.get(position);
+		Document doc;
+		if (searchInput.length() == 0)
+			doc = fileArray.get(position);
+		else
+			doc = searchArray.get(position);
+
 		Intent docViewer = new Intent(this, DocViewerActivity.class);
 		docViewer.putExtra("path", doc.getPath());
 		docViewer.putExtra("name", doc.getFilename());
 		startActivity(docViewer);
+
 	}
 
 	public void editDialog(AdapterView<?> parent, View v, int position, long id) {
@@ -185,7 +189,7 @@ public class FileListActivity extends Activity implements OnItemClickListener, O
 		fileArray.remove(position);
 		db.close();
 		// updates list
-		createList();
+		createList(fileArray);
 	}
 
 	public void shareFromList(int position) throws IOException {
@@ -202,8 +206,7 @@ public class FileListActivity extends Activity implements OnItemClickListener, O
 
 			Intent share = new Intent(Intent.ACTION_SEND);
 			share.setType("image/jpeg");
-			share.putExtra(Intent.EXTRA_STREAM,
-					uri);
+			share.putExtra(Intent.EXTRA_STREAM, uri);
 			startActivity(Intent.createChooser(share, "Share Image"));
 		} else {
 			Toast.makeText(getApplicationContext(),
@@ -235,13 +238,25 @@ public class FileListActivity extends Activity implements OnItemClickListener, O
 	@Override
 	public boolean onQueryTextSubmit(String query) {
 		Toast.makeText(this, query, Toast.LENGTH_SHORT).show();
-        return true;
+		return true;
 	}
 
 	@Override
 	public boolean onQueryTextChange(String newText) {
-		Toast.makeText(this, newText, Toast.LENGTH_SHORT).show();
-        return true;
+		search(newText);
+		return true;
+	}
+
+	public void search(String input) {
+		searchArray.clear();
+		searchInput = input;
+		for (Document doc : fileArray) {
+			String name = doc.getFilename();
+			if (name.toLowerCase().contains(input.toLowerCase())) {
+				searchArray.add(doc);
+			}
+		}
+		createList(searchArray);
 	}
 
 }

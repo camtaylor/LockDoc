@@ -51,8 +51,16 @@ public class FileAdapter extends ArrayAdapter<Document> {
 		LayoutInflater inflater = context.getLayoutInflater();
 		View docView = inflater.inflate(R.layout.document_layout, null);
 		
-		ImageView imageView = (ImageView)docView.findViewById(R.id.typeView);
-		imageView.setImageResource(R.drawable.ic_launcher);
+		ImageView imageView;
+		if(file.getDocType().equals("Personal")){
+			
+			imageView = (ImageView)docView.findViewById(R.id.typeView);
+			imageView.setImageResource(R.drawable.personal);
+		}
+		else {
+			imageView = (ImageView)docView.findViewById(R.id.typeView);
+			imageView.setImageResource(R.drawable.business);
+		}
 		
 		TextView nameView = (TextView)docView.findViewById(R.id.nameView);
 		nameView.setText(file.getFilename());

@@ -89,10 +89,6 @@ public class FileListActivity extends Activity implements OnItemClickListener,
 			Toast.makeText(this, "Search Selected", Toast.LENGTH_LONG).show();
 			// TODO Create Search
 			break;
-		case R.id.action_settings:
-			Toast.makeText(this, "Settings Selected", Toast.LENGTH_LONG).show();
-			// TODO Bring up Settings Section
-			break;
 		case R.id.action_logout:
 			Toast.makeText(this, "Logging Out",  Toast.LENGTH_LONG).show();
 			Intent logout = new Intent(this, LoginActivity.class);

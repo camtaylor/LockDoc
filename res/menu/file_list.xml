@@ -2,19 +2,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.lockdoc.FileListActivity" >
-
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/action_search"
         android:icon="@drawable/ic_action_search"
         android:title="@string/action_search"
         android:showAsAction="ifRoom" 
         android:actionViewClass="android.widget.SearchView"/>
-    <item android:id="@+id/action_capture" android:icon="@drawable/file_add" android:showAsAction="ifRoom" android:title="@string/add_file"></item>
+    <item
+        android:id="@+id/action_capture"
+        android:icon="@drawable/file_add"
+        android:showAsAction="ifRoom"
+        android:title="@string/add_file"
+        ></item>
     
     <item 
         android:id="@+id/action_logout"

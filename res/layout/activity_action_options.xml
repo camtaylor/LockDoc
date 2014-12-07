@@ -11,13 +11,21 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.lockdoc.ActionOptionsActivity" >
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.66"
+        android:text="GREETING"
+        android:layout_gravity="center_horizontal"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
     <ImageButton
         android:id="@+id/addFileButton"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
+        android:layout_width="223dp"
+        android:layout_height="329dp"
+        android:layout_gravity="center_horizontal"
         android:background="#F0F0F0"
-        android:layout_weight="0.66"
         android:onClick="capture"
         android:scaleType="centerInside"
         android:src="@drawable/file_add" />

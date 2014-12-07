@@ -5,8 +5,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.channels.FileChannel;
 import java.util.Random;
 
 import android.app.Activity;
@@ -29,6 +27,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 public class DocPreviewActivity extends ActionBarActivity {
 
@@ -121,6 +120,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 		RadioGroup tg = (RadioGroup) findViewById(R.id.radioType);
 		EditText description = (EditText) findViewById(R.id.doc_description);
 		description.setText(doc.getDescription());
+				
 		RadioGroup rg = (RadioGroup) findViewById(R.id.radioPrivacy);
 
 		try {
@@ -248,6 +248,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 		Document doc = new Document(name, type);
 		String date = doc.getUploadDate();
 		// save in db and start new activity for classification
+	
 		RadioGroup rg = (RadioGroup) findViewById(R.id.radioPrivacy);
 		RadioButton privacyButton = (RadioButton) findViewById(rg
 				.getCheckedRadioButtonId());

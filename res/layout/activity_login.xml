@@ -47,12 +47,4 @@
         android:onClick="logIn"
         android:text="Login" />
 
-    <Button
-        android:id="@+id/save_button"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:onClick="deletePin"
-        android:text="Delete Pin: test" />
-
 </LinearLayout>

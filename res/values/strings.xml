@@ -4,6 +4,7 @@
     <string name="app_name">LockDoc</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="action_logout">Logout</string>
     <string name="action_search">Search</string>
     <string name="title_activity_file_list">FileListActivity</string>
     <string name="title_activity_file_adapter">FileAdapter</string>

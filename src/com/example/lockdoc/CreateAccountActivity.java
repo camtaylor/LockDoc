@@ -43,6 +43,7 @@ public class CreateAccountActivity extends ActionBarActivity {
 				// return to login
 				Intent login = new Intent(this, LoginActivity.class);
 				startActivity(login);
+				finish();
 			} else {
 				Toast.makeText(getApplicationContext(),
 						"Pin must be 3 to 10 characters long",

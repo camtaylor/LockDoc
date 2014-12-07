@@ -239,12 +239,6 @@ public class FileListActivity extends Activity implements OnItemClickListener,
 		}
 	}
 
-	@Override
-	public void onBackPressed() {
-		super.onBackPressed();
-		Intent actionOptions = new Intent(this, ActionOptionsActivity.class);
-		startActivity(actionOptions);
-	}
 
 	@Override
 	public boolean onQueryTextSubmit(String query) {

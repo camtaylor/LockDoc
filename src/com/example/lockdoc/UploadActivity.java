@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class UploadActivity extends Activity {
 	/*
@@ -18,9 +19,9 @@ public class UploadActivity extends Activity {
 		setContentView(R.layout.activity_capture);
 		setTitle("Upload File");
 
-		Button cameraButton = (Button) findViewById(R.id.button_camera);
+		ImageButton cameraButton = (ImageButton) findViewById(R.id.button_camera);
 		cameraButton.setOnClickListener(cameraListener);
-		Button selectImageButton = (Button) findViewById(R.id.selectImageButton);
+		ImageButton selectImageButton = (ImageButton) findViewById(R.id.selectImageButton);
 		selectImageButton.setOnClickListener(selectListener);
 	}
 

@@ -95,6 +95,10 @@ public class FileListActivity extends Activity implements OnItemClickListener,
 			break;
 		case R.id.action_logout:
 			Toast.makeText(this, "Logging Out",  Toast.LENGTH_LONG).show();
+			Intent logout = new Intent(this, LoginActivity.class);
+			logout.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(logout);
+			break;
 		case R.id.action_capture:
 			Intent add = new Intent(this, UploadActivity.class);
 			startActivity(add);

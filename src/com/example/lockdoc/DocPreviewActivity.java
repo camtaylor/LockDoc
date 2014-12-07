@@ -152,6 +152,9 @@ public class DocPreviewActivity extends ActionBarActivity {
 		if (resultCode == Activity.RESULT_OK) {
 			getImage(imageUri);
 		}
+		else{
+			finish();
+		}
 		File toDelete = new File(
 				Environment
 						.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),

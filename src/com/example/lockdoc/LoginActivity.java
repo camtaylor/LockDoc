@@ -34,6 +34,7 @@ public class LoginActivity extends Activity {
 		if (savedPin != null) {
 			// User has an account
 			if (attempted.equals(savedPin)) {
+				pin.setText("");
 				Intent login = new Intent(this, FileListActivity.class);
 				startActivity(login);
 			} else if (attempted.length() > 0){

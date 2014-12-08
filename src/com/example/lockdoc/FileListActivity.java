@@ -187,16 +187,31 @@ public class FileListActivity extends Activity implements OnItemClickListener,
 	}
 
 	public void deleteFromList(int position) {
-		DocSave db = new DocSave(this);
-		db.open();
-		Document doc = fileArray.get(position);
-		// deletes from db
-		db.deleteEntry(doc.getID());
-		// deletes from list
-		fileArray.remove(position);
-		db.close();
-		// updates list
-		createList(fileArray);
+		final int index = position;
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage("Are you sure you want to delete this file?").setTitle("Delete");
+		builder.setPositiveButton("Delete", new DialogInterface.OnClickListener(){
+			public void onClick(DialogInterface dialog, int id){
+				DocSave db = new DocSave(getApplicationContext());
+				db.open();
+				Document doc = fileArray.get(index);
+				// deletes from db
+				db.deleteEntry(doc.getID());
+				// deletes from list
+				fileArray.remove(index);
+				db.close();
+				// updates list
+				createList(fileArray);
+			}
+		});
+		builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+	           public void onClick(DialogInterface dialog, int id) {
+	        	   
+	           }
+	       });
+		builder.create().show();
+		
+		
 	}
 
 	public void shareFromList(int position) throws IOException {

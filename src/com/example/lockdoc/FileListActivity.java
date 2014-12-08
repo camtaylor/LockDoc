@@ -205,14 +205,19 @@ public class FileListActivity extends Activity implements OnItemClickListener,
 					public void onClick(DialogInterface dialog, int id) {
 						DocSave db = new DocSave(getApplicationContext());
 						db.open();
-						Document doc = fileArray.get(index);
-						// deletes from db
+						Document doc;
+						if (searchInput.length() == 0) {
+							doc = fileArray.get(index);
+							fileArray.remove(index);
+							createList(fileArray);
+						} else {
+							doc = searchArray.get(index);
+							searchArray.remove(index);
+							createList(searchArray);
+						}
 						db.deleteEntry(doc.getID());
-						// deletes from list
-						fileArray.remove(index);
+						fileArray = db.getDocumentList();
 						db.close();
-						// updates list
-						createList(fileArray);
 					}
 				});
 		builder.setNegativeButton("Cancel",

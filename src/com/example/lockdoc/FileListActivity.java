@@ -231,7 +231,12 @@ public class FileListActivity extends Activity implements OnItemClickListener,
 	}
 
 	public void shareFromList(int position) throws IOException {
-		Document doc = fileArray.get(position);
+		
+		Document doc;
+		if(searchInput.length() == 0)
+			doc = fileArray.get(position);
+		else
+			doc = searchArray.get(position);
 
 		if (doc.getPrivacy().equals("Shareable")) {
 			File inFile = new File(doc.getPath());

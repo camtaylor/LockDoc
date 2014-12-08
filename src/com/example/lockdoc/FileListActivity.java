@@ -52,7 +52,7 @@ public class FileListActivity extends Activity implements OnItemClickListener,
 		setTitle("Your Files");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_file_list);
-		
+
 		ActionBar actionBar = getActionBar();
 		// populate list from database
 		DocSave db = new DocSave(this);
@@ -60,11 +60,11 @@ public class FileListActivity extends Activity implements OnItemClickListener,
 		fileArray = db.getDocumentList();
 		db.close();
 		createList(fileArray);
-		
-		if(fileArray.size() == 0){
+
+		if (fileArray.size() == 0) {
 			Intent intent = new Intent(this, ActionOptionsActivity.class);
 			startActivity(intent);
-		}	
+		}
 
 	}
 
@@ -90,9 +90,10 @@ public class FileListActivity extends Activity implements OnItemClickListener,
 			// TODO Create Search
 			break;
 		case R.id.action_logout:
-			Toast.makeText(this, "Logging Out",  Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Logging Out", Toast.LENGTH_LONG).show();
 			Intent logout = new Intent(this, LoginActivity.class);
-			logout.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+			logout.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+					| Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(logout);
 			break;
 		case R.id.action_capture:
@@ -124,7 +125,6 @@ public class FileListActivity extends Activity implements OnItemClickListener,
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		// TODO Open selected file for viewing
 		Document doc;
 		if (searchInput.length() == 0)
 			doc = fileArray.get(position);
@@ -142,10 +142,19 @@ public class FileListActivity extends Activity implements OnItemClickListener,
 		// method to create an edit dialog box
 		String[] options = { "Edit", "Delete", "Share" };
 		final int item = position;
-		final Document doc = fileArray.get(item);
+		final Document doc;
+		final String title;
+		// checks if the user is searching
+		if (searchInput.length() == 0) {
+			doc = fileArray.get(item);
+			title = doc.getFilename();
+		} else {
+			doc = searchArray.get(item);
+			title = doc.getFilename();
+		}
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle(fileArray.get(position).getFilename()).setItems(
-				options, new DialogInterface.OnClickListener() {
+		builder.setTitle(title).setItems(options,
+				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						switch (which) {
 						case 0:
@@ -189,29 +198,31 @@ public class FileListActivity extends Activity implements OnItemClickListener,
 	public void deleteFromList(int position) {
 		final int index = position;
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage("Are you sure you want to delete this file?").setTitle("Delete");
-		builder.setPositiveButton("Delete", new DialogInterface.OnClickListener(){
-			public void onClick(DialogInterface dialog, int id){
-				DocSave db = new DocSave(getApplicationContext());
-				db.open();
-				Document doc = fileArray.get(index);
-				// deletes from db
-				db.deleteEntry(doc.getID());
-				// deletes from list
-				fileArray.remove(index);
-				db.close();
-				// updates list
-				createList(fileArray);
-			}
-		});
-		builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-	           public void onClick(DialogInterface dialog, int id) {
-	        	   
-	           }
-	       });
+		builder.setMessage("Are you sure you want to delete this file?")
+				.setTitle("Delete");
+		builder.setPositiveButton("Delete",
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						DocSave db = new DocSave(getApplicationContext());
+						db.open();
+						Document doc = fileArray.get(index);
+						// deletes from db
+						db.deleteEntry(doc.getID());
+						// deletes from list
+						fileArray.remove(index);
+						db.close();
+						// updates list
+						createList(fileArray);
+					}
+				});
+		builder.setNegativeButton("Cancel",
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+
+					}
+				});
 		builder.create().show();
-		
-		
+
 	}
 
 	public void shareFromList(int position) throws IOException {
@@ -249,7 +260,6 @@ public class FileListActivity extends Activity implements OnItemClickListener,
 				outChannel.close();
 		}
 	}
-
 
 	@Override
 	public boolean onQueryTextSubmit(String query) {

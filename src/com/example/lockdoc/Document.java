@@ -24,8 +24,9 @@ public class Document {
 		this.filename = filename;
 		this.docType = type;
 	}
-	public Document(long id, String filename, String type, String uploadDate, 
-			String description, String privacy, String path){
+
+	public Document(long id, String filename, String type, String uploadDate,
+			String description, String privacy, String path) {
 		this.id = id;
 		this.filename = filename;
 		this.docType = type;
@@ -83,8 +84,8 @@ public class Document {
 	}
 
 	public void setPrivacy(String privacy) {
-		//only 3 options for privacy
-		if(privacy.equals("Locked Up"))
+		// only 3 options for privacy
+		if (privacy.equals("Locked Up"))
 			this.privacy = privacy;
 		else
 			this.privacy = "Shareable";

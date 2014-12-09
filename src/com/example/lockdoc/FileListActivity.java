@@ -228,9 +228,9 @@ public class FileListActivity extends Activity implements OnItemClickListener,
 	}
 
 	public void shareFromList(int position) throws IOException {
-		
+
 		Document doc;
-		if(searchInput.length() == 0)
+		if (searchInput.length() == 0)
 			doc = fileArray.get(position);
 		else
 			doc = searchArray.get(position);
@@ -253,7 +253,7 @@ public class FileListActivity extends Activity implements OnItemClickListener,
 					"Locked up items are not shareable", Toast.LENGTH_LONG)
 					.show();
 		}
-		
+
 	}
 
 	public void copyFile(File src, File dst) throws IOException {

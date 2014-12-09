@@ -64,16 +64,15 @@ public class DocPreviewActivity extends ActionBarActivity {
 	public void selectImage(String path) {
 		setContentView(R.layout.activity_doc_preview);
 		Bitmap myBit = BitmapFactory.decodeFile(path);
-		ImageView myImageView = (ImageView)findViewById(R.id.image_camera);
+		ImageView myImageView = (ImageView) findViewById(R.id.image_camera);
 		myImageView.setImageBitmap(myBit);
-		
+
 		ContextWrapper cw = new ContextWrapper(getApplicationContext());
 		File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
 
 		Random randomInt = new Random();
 		int tempInt = randomInt.nextInt(10000);
-		File mypath = new File(directory, Integer.toString(tempInt)
-				+ ".jpeg");
+		File mypath = new File(directory, Integer.toString(tempInt) + ".jpeg");
 		internalPath = mypath.getAbsolutePath();
 		FileOutputStream fos = null;
 		try {
@@ -82,8 +81,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 			myBit.compress(Bitmap.CompressFormat.JPEG, 100, fos);
 			fos.close();
 			// load bitmap from internal storage
-			Bitmap b = BitmapFactory.decodeStream(new FileInputStream(
-					mypath));
+			Bitmap b = BitmapFactory.decodeStream(new FileInputStream(mypath));
 			myImageView.setImageBitmap(b);
 		} catch (Exception e) {
 			Log.e(logtag, e.toString());
@@ -119,7 +117,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 		RadioGroup tg = (RadioGroup) findViewById(R.id.radioType);
 		EditText description = (EditText) findViewById(R.id.doc_description);
 		description.setText(doc.getDescription());
-				
+
 		RadioGroup rg = (RadioGroup) findViewById(R.id.radioPrivacy);
 
 		try {
@@ -147,11 +145,10 @@ public class DocPreviewActivity extends ActionBarActivity {
 			Intent intent) {
 		super.onActivityResult(requestCode, resultCode, intent);
 		String filePath = null;
-		
+
 		if (resultCode == Activity.RESULT_OK) {
 			getImage(imageUri);
-		}
-		else{
+		} else {
 			finish();
 		}
 		File toDelete = new File(
@@ -161,8 +158,8 @@ public class DocPreviewActivity extends ActionBarActivity {
 		toDelete.delete();
 
 	}
-	
-	public void getImage(Uri imageUri){
+
+	public void getImage(Uri imageUri) {
 		Uri selectedImage = imageUri;
 		getContentResolver().notifyChange(selectedImage, null);
 		ImageView imageView = (ImageView) findViewById(R.id.image_camera);
@@ -173,8 +170,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 
 		Random randomInt = new Random();
 		int tempInt = randomInt.nextInt(10000);
-		File mypath = new File(directory, Integer.toString(tempInt)
-				+ ".jpeg");
+		File mypath = new File(directory, Integer.toString(tempInt) + ".jpeg");
 		internalPath = mypath.getAbsolutePath();
 		FileOutputStream fos = null;
 		try {
@@ -184,14 +180,12 @@ public class DocPreviewActivity extends ActionBarActivity {
 			bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
 			fos.close();
 			// load bitmap from internal storage
-			Bitmap b = BitmapFactory.decodeStream(new FileInputStream(
-					mypath));
+			Bitmap b = BitmapFactory.decodeStream(new FileInputStream(mypath));
 			imageView.setImageBitmap(b);
 		} catch (Exception e) {
 			Log.e(logtag, e.toString());
 		}
 	}
-	
 
 	// Get Path from URI
 	public String getPath(Uri uri) {
@@ -250,7 +244,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 		Document doc = new Document(name, type);
 		String date = doc.getUploadDate();
 		// save in db and start new activity for classification
-	
+
 		RadioGroup rg = (RadioGroup) findViewById(R.id.radioPrivacy);
 		RadioButton privacyButton = (RadioButton) findViewById(rg
 				.getCheckedRadioButtonId());

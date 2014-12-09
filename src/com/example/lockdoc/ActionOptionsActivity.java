@@ -16,14 +16,17 @@ public class ActionOptionsActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_action_options);
 		setTitle("LockDoc");
-		
+
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage("To get started, tap the button below to Lock up your files").setTitle("Welcome To LockDoc!");
-		builder.setPositiveButton("Got it!", new DialogInterface.OnClickListener(){
-			public void onClick(DialogInterface dialog, int id){
-				
-			}
-		});
+		builder.setMessage(
+				"To get started, tap the button below to Lock up your files")
+				.setTitle("Welcome To LockDoc!");
+		builder.setPositiveButton("Got it!",
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+
+					}
+				});
 
 		builder.create().show();
 	}

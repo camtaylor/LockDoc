@@ -37,7 +37,7 @@ public class LoginActivity extends Activity {
 				pin.setText("");
 				Intent login = new Intent(this, FileListActivity.class);
 				startActivity(login);
-			} else if (attempted.length() > 0){
+			} else if (attempted.length() > 0) {
 				Toast.makeText(getApplicationContext(), "Incorrect Pin",
 						Toast.LENGTH_SHORT).show();
 			}

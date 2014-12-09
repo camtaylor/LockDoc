@@ -102,13 +102,14 @@ public class DocSave {
 		database.update(TABLE_DOCS, cvEdit, COLUMN_ID + "=" + ID, null);
 	}
 
-	public Document getDocumentWithString(String input){
+	public Document getDocumentWithString(String input) {
 		Document doc = null;
 		String[] columns = new String[] { COLUMN_ID, COLUMN_NAME, COLUMN_TYPE,
 				COLUMN_DATE, COLUMN_DESCRIPTION, COLUMN_PRIVACY,
 				COLUMN_FILENAME };
-		Cursor c = database.query(TABLE_DOCS, columns, COLUMN_NAME + "=" + input,
-				null, null, null, null, null); // Search for name of file
+		Cursor c = database.query(TABLE_DOCS, columns, COLUMN_NAME + "="
+				+ input, null, null, null, null, null); // Search for name of
+														// file
 
 		int iRow = c.getColumnIndex(COLUMN_ID);
 		int iName = c.getColumnIndex(COLUMN_NAME);
@@ -117,7 +118,7 @@ public class DocSave {
 		int iDescription = c.getColumnIndex(COLUMN_DESCRIPTION);
 		int iPrivacy = c.getColumnIndex(COLUMN_PRIVACY);
 		int iFilename = c.getColumnIndex(COLUMN_FILENAME);
-		
+
 		if (c != null) {
 			c.moveToFirst();
 			doc = new Document(Long.parseLong(c.getString(iRow)),
@@ -128,6 +129,7 @@ public class DocSave {
 
 		return doc;
 	}
+
 	public Document getDocumentAtCursor(long ID) {
 
 		Document doc = null;
@@ -162,7 +164,8 @@ public class DocSave {
 	public String getData() {
 		// gets all data as one string
 		String[] columns = new String[] { COLUMN_ID, COLUMN_NAME, COLUMN_TYPE,
-				COLUMN_DATE, COLUMN_DESCRIPTION, COLUMN_PRIVACY, COLUMN_FILENAME};
+				COLUMN_DATE, COLUMN_DESCRIPTION, COLUMN_PRIVACY,
+				COLUMN_FILENAME };
 		Cursor c = database.query(TABLE_DOCS, columns, null, null, null, null,
 				null, null);
 		String result = "";
@@ -189,7 +192,8 @@ public class DocSave {
 	public ArrayList<Document> getDocumentList() {
 		// returns Document object list from database rows
 		String[] columns = new String[] { COLUMN_ID, COLUMN_NAME, COLUMN_TYPE,
-				COLUMN_DATE, COLUMN_DESCRIPTION, COLUMN_PRIVACY, COLUMN_FILENAME};
+				COLUMN_DATE, COLUMN_DESCRIPTION, COLUMN_PRIVACY,
+				COLUMN_FILENAME };
 		Cursor c = database.query(TABLE_DOCS, columns, null, null, null, null,
 				null, null);
 		ArrayList<Document> documents = new ArrayList<Document>();
@@ -201,7 +205,6 @@ public class DocSave {
 		int iDescription = c.getColumnIndex(COLUMN_DESCRIPTION);
 		int iPrivacy = c.getColumnIndex(COLUMN_PRIVACY);
 		int iFilename = c.getColumnIndex(COLUMN_FILENAME);
-		
 
 		// cycle through database
 		for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {

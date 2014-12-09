@@ -76,7 +76,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 		try {
 			fos = new FileOutputStream(mypath);
 			// sets image view to image
-			bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+			bitmap.compress(Bitmap.CompressFormat.JPEG, 70, fos);
 			fos.close();
 			// load bitmap from internal storage
 		} catch (Exception e) {
@@ -171,8 +171,8 @@ public class DocPreviewActivity extends ActionBarActivity {
 		try {
 			fos = new FileOutputStream(mypath);
 			// sets image view to image
-			bitmap = MediaStore.Images.Media.getBitmap(cr, selectedImage);
-			bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+			bitmap = decodeFile(selectedImage.getPath());
+			bitmap.compress(Bitmap.CompressFormat.JPEG, 70, fos);
 			fos.close();
 			imageView.setImageBitmap(bitmap);
 		} catch (Exception e) {
@@ -200,7 +200,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 		opt.inJustDecodeBounds = true;
 		BitmapFactory.decodeFile(path, opt);
 
-		final int REQUIRED_SIZE = 1024; // Scaled Size
+		final int REQUIRED_SIZE = 800; // Scaled Size
 
 		int width = opt.outWidth;
 		int height = opt.outHeight;
@@ -215,6 +215,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 
 		BitmapFactory.Options opt2 = new BitmapFactory.Options();
 		opt2.inSampleSize = scale;
+		opt2.inPurgeable = true;
 		bitmap = BitmapFactory.decodeFile(path, opt2);
 		return bitmap;
 

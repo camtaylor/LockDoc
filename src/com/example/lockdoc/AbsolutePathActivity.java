@@ -23,6 +23,7 @@ public class AbsolutePathActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setTitle("Upload File");
 		setContentView(R.layout.activity_capture);
 		Intent intent = new Intent();
 		intent.setType("image/*");
@@ -49,9 +50,14 @@ public class AbsolutePathActivity extends Activity {
 				i.putExtra("Select", true);
 				i.putExtra("Path", selectedImagePath);
 				startActivity(i);
+				finish();
 			}
 		}
+		else{
+			finish();
+		}
 	}
+
 
 	public static class ImageFilePath {
 

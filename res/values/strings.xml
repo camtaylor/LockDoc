@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">LockDoc</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="action_logout">Logout</string>
-    <string name="action_search">Search</string>
-    <string name="title_activity_file_list">FileListActivity</string>
-    <string name="title_activity_file_adapter">FileAdapter</string>
-    <string name="title_activity_action_options">ActionOptionsActivity</string>
-    <string name="title_activity_splash">SplashActivity</string>
-    <string name="title_activity_capture">CaptureActivity</string>
-    <string name="image_cd_camera">This is a generic content description</string>
-    <string name="title_activity_create_account">CreateAccountActivity</string>
-    <string name="title_activity_doc_info">DocInfoActivity</string>
-    <string name="title_activity_doc_preview">DocPreviewActivity</string>
-    <string name="title_activity_test_database">TestDatabaseActivity</string>
-    <string name="title_activity_sqlview">SQLView</string>
-    <string name="title_activity_doc_viewer">DocViewer</string>
-    <string name="title_activity_search">SearchActivity</string>
-    <string name="title_activity_absolute_path">AbsolutePathActivity</string>
-    <string name="add_file">Add File</string>
+    <string name="app_name" translatable="false">LockDoc</string>
+    <string name="hello_world" translatable="false">Hello world!</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="action_logout" translatable="false">Logout</string>
+    <string name="action_search" translatable="false">Search</string>
+    <string name="title_activity_file_list" translatable="false">FileListActivity</string>
+    <string name="title_activity_file_adapter" translatable="false">FileAdapter</string>
+    <string name="title_activity_action_options" translatable="false">ActionOptionsActivity</string>
+    <string name="title_activity_splash" translatable="false">SplashActivity</string>
+    <string name="title_activity_capture" translatable="false">CaptureActivity</string>
+    <string name="image_cd_camera" translatable="false">This is a generic content description</string>
+    <string name="title_activity_create_account" translatable="false">CreateAccountActivity</string>
+    <string name="title_activity_doc_info" translatable="false">DocInfoActivity</string>
+    <string name="title_activity_doc_preview" translatable="false">DocPreviewActivity</string>
+    <string name="title_activity_test_database" translatable="false">TestDatabaseActivity</string>
+    <string name="title_activity_sqlview" translatable="false">SQLView</string>
+    <string name="title_activity_doc_viewer" translatable="false">DocViewer</string>
+    <string name="title_activity_search" translatable="false">SearchActivity</string>
+    <string name="title_activity_absolute_path" translatable="false">AbsolutePathActivity</string>
+    <string name="add_file" translatable="false">Add File</string>
 
 </resources>

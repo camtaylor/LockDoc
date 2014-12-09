@@ -256,6 +256,7 @@ public class FileListActivity extends Activity implements OnItemClickListener,
 					"Locked up items are not shareable", Toast.LENGTH_LONG)
 					.show();
 		}
+		
 	}
 
 	public void copyFile(File src, File dst) throws IOException {

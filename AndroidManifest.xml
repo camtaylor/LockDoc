@@ -56,20 +56,8 @@
             android:label="@string/title_activity_create_account" >
         </activity>
         <activity
-            android:name=".DocInfoActivity"
-            android:label="@string/title_activity_doc_info" >
-        </activity>
-        <activity
             android:name=".DocPreviewActivity"
             android:label="@string/title_activity_doc_preview" >
-        </activity>
-        <activity
-            android:name=".TestDatabaseActivity"
-            android:label="@string/title_activity_test_database" >
-        </activity>
-        <activity
-            android:name=".SQLView"
-            android:label="@string/title_activity_sqlview" >
         </activity>
         <activity
             android:name=".DocViewerActivity"

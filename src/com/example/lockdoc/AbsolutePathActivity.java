@@ -44,8 +44,6 @@ public class AbsolutePathActivity extends Activity {
 				selectedImagePath = ImageFilePath.getPath(
 						getApplicationContext(), selectedImageUri);
 				Log.i("Image File Path", "" + selectedImagePath);
-				Toast.makeText(getApplicationContext(), selectedImagePath,
-						Toast.LENGTH_LONG).show();
 				Intent i = new Intent(this, DocPreviewActivity.class);
 				i.putExtra("Select", true);
 				i.putExtra("Path", selectedImagePath);

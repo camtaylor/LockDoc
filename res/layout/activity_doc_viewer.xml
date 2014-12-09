@@ -11,11 +11,11 @@
     tools:context="com.example.lockdoc.DocViewerActivity" >
 
     <ImageView
-        android:layout_gravity="center"
         android:id="@+id/image_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="fill"
         android:contentDescription="@string/image_cd_camera"
-        android:scaleType="centerInside" />
+        android:scaleType="matrix" />
 
 </FrameLayout>

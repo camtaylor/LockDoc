@@ -31,8 +31,6 @@ import android.widget.SearchView;
 import android.widget.SearchView.OnQueryTextListener;
 import android.widget.Toast;
 
-//import android.support.v7.widget.SearchView;
-
 @SuppressLint("NewApi")
 public class FileListActivity extends Activity implements OnItemClickListener,
 		OnQueryTextListener {
@@ -87,7 +85,6 @@ public class FileListActivity extends Activity implements OnItemClickListener,
 		switch (item.getItemId()) {
 		case R.id.action_search:
 			Toast.makeText(this, "Search Selected", Toast.LENGTH_LONG).show();
-			// TODO Create Search
 			break;
 		case R.id.action_logout:
 			Toast.makeText(this, "Logging Out", Toast.LENGTH_LONG).show();

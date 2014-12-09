@@ -16,7 +16,6 @@ public class DocSave {
 	 * Class that handles database reading and writing
 	 */
 
-	// TODO save bitmap of image to column
 	private static final String LOGTAG = "LOCDOCDB";
 
 	private static final String DATABASE_NAME = "docs.db";
@@ -37,7 +36,7 @@ public class DocSave {
 
 	public class DocSQLiteHelper extends SQLiteOpenHelper {
 
-		// sql code to create new table
+		// code to create new table
 		private static final String TABLE_CREATE = "CREATE TABLE " + TABLE_DOCS
 				+ " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
 				+ COLUMN_NAME + " TEXT NOT NULL, " + COLUMN_TYPE
@@ -95,7 +94,6 @@ public class DocSave {
 		database.delete(TABLE_DOCS, COLUMN_ID + "=" + ID, null);
 	}
 
-	// TODO Edit Entry at Cursor
 	public void editEntry(long ID, String name, String type, String description) {
 		ContentValues cvEdit = new ContentValues();
 		cvEdit.put(COLUMN_NAME, name);

@@ -50,7 +50,6 @@ public class LoginActivity extends Activity {
 
 	}
 
-	// TODO remove this method. For test purposes only!!
 	public void deletePin(View v) {
 		// changes pin to null
 		PreferenceManager.getDefaultSharedPreferences(getApplicationContext())

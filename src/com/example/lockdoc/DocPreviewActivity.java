@@ -26,7 +26,6 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 import com.rekap.lockdoc.R;
 
 public class DocPreviewActivity extends ActionBarActivity {
@@ -42,8 +41,6 @@ public class DocPreviewActivity extends ActionBarActivity {
 	long id;
 	private String internalPath;
 	private Bitmap bitmap;
-	private ImageView image;
-	private static final int PICK_IMAGE = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +61,9 @@ public class DocPreviewActivity extends ActionBarActivity {
 
 	public void selectImage(String path) {
 		setContentView(R.layout.activity_doc_preview);
-		Bitmap myBit = BitmapFactory.decodeFile(path);
+		bitmap = decodeFile(path);
 		ImageView myImageView = (ImageView) findViewById(R.id.image_camera);
-		myImageView.setImageBitmap(myBit);
+		myImageView.setImageBitmap(bitmap);
 
 		ContextWrapper cw = new ContextWrapper(getApplicationContext());
 		File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
@@ -79,11 +76,9 @@ public class DocPreviewActivity extends ActionBarActivity {
 		try {
 			fos = new FileOutputStream(mypath);
 			// sets image view to image
-			myBit.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+			bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
 			fos.close();
 			// load bitmap from internal storage
-			Bitmap b = BitmapFactory.decodeStream(new FileInputStream(mypath));
-			myImageView.setImageBitmap(b);
 		} catch (Exception e) {
 			Log.e(logtag, e.toString());
 		}
@@ -125,8 +120,8 @@ public class DocPreviewActivity extends ActionBarActivity {
 			ImageView iv = (ImageView) findViewById(R.id.image_camera);
 			FileInputStream is;
 			is = new FileInputStream(doc.getPath());
-			Bitmap b = BitmapFactory.decodeStream(is);
-			iv.setImageBitmap(b);
+			bitmap = BitmapFactory.decodeStream(is);
+			iv.setImageBitmap(bitmap);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -145,7 +140,6 @@ public class DocPreviewActivity extends ActionBarActivity {
 	protected void onActivityResult(int requestCode, int resultCode,
 			Intent intent) {
 		super.onActivityResult(requestCode, resultCode, intent);
-		String filePath = null;
 
 		if (resultCode == Activity.RESULT_OK) {
 			getImage(imageUri);
@@ -180,9 +174,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 			bitmap = MediaStore.Images.Media.getBitmap(cr, selectedImage);
 			bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
 			fos.close();
-			// load bitmap from internal storage
-			Bitmap b = BitmapFactory.decodeStream(new FileInputStream(mypath));
-			imageView.setImageBitmap(b);
+			imageView.setImageBitmap(bitmap);
 		} catch (Exception e) {
 			Log.e(logtag, e.toString());
 		}
@@ -203,7 +195,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 
 	}
 
-	public void decodeFile(String path) {
+	public Bitmap decodeFile(String path) {
 		BitmapFactory.Options opt = new BitmapFactory.Options();
 		opt.inJustDecodeBounds = true;
 		BitmapFactory.decodeFile(path, opt);
@@ -224,6 +216,7 @@ public class DocPreviewActivity extends ActionBarActivity {
 		BitmapFactory.Options opt2 = new BitmapFactory.Options();
 		opt2.inSampleSize = scale;
 		bitmap = BitmapFactory.decodeFile(path, opt2);
+		return bitmap;
 
 		// image.setImageBitmap(bitmap);
 	}

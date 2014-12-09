@@ -15,7 +15,7 @@
         android:contentDescription="Type"
         android:padding="5dp"
         android:scaleType="fitStart"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/logo" />
 
     <TextView
         android:id="@+id/nameView"

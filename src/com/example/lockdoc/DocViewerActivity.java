@@ -14,6 +14,7 @@ import android.view.ScaleGestureDetector;
 import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
+import com.rekap.lockdoc.R;
 
 public class DocViewerActivity extends Activity {
 

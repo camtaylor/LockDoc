@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+import com.rekap.lockdoc.R;
 
 public class LoginActivity extends Activity {
 	/*

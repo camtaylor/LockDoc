@@ -14,6 +14,7 @@ import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Toast;
+import com.rekap.lockdoc.R;
 
 @SuppressLint("NewApi")
 public class AbsolutePathActivity extends Activity {

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.rekap.lockdoc.R;
 
 @SuppressLint("Instantiatable")
 public class FileAdapter extends ArrayAdapter<Document> {

@@ -27,6 +27,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+import com.rekap.lockdoc.R;
 
 public class DocPreviewActivity extends ActionBarActivity {
 

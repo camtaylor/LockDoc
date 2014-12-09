@@ -30,6 +30,7 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.SearchView.OnQueryTextListener;
 import android.widget.Toast;
+import com.rekap.lockdoc.R;
 
 @SuppressLint("NewApi")
 public class FileListActivity extends Activity implements OnItemClickListener,

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
+import com.rekap.lockdoc.R;
 
 public class UploadActivity extends Activity {
 	/*
